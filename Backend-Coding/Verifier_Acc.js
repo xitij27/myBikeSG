@@ -1,6 +1,6 @@
 class Verifier_Acc extends Account
 {
-    constructor(racksVerified = [])
+    constructor(emailId, DOB, Name, racksVerified = [])
     {
         this.racksVerified = racksVerified;
         super(emailId,DOB,Name);
