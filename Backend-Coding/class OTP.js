@@ -22,4 +22,12 @@ class OTP
        {return false;}
        return true;
    }
+   OTPvalid()
+   {
+    var check_time=Date.now();
+    var diff=(check_time-this.create_time)/60000;
+    if(diff>15)
+    {return false;}
+    return true;
+   }
 }
