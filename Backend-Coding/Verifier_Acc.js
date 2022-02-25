@@ -2,6 +2,7 @@ class Verifier_Acc extends Account
 {
     constructor(emailId, DOB, Name, racksVerified = [])
     {
+        this.emailId = emailId;
         this.DOB = DOB;
         this.Name = Name;
         this.racksVerified = racksVerified;
