@@ -1,0 +1,149 @@
+.burger {
+    height: 80px;
+    position: absolute;
+    z-index: 990;
+    display: flex;
+    justify-content: start;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+    opacity: 0;
+    transition-delay: 150ms;
+}
+
+.not-burger {
+    height: 80px;
+    position: absolute;
+    z-index: 990;
+    display: flex;
+    justify-content: start;
+    top: 0px;
+    left: 0px;
+    align-items: center;
+}
+
+.menu-bars {
+    color: #000000;
+    z-index: 1;
+    margin-left: 20px;
+    height: 30px;
+    width: 30px;
+    background: none;
+}
+
+.nav-menu {
+    background-color: #f5f5f5;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+}
+
+.nav-menu.active {
+    position: absolute;
+    left: 0;
+    transition: 350ms;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+
+.nav-text a:hover {
+    background-color: #1a83ff;
+}
+
+.nav-menu-items {
+    width: 100%;
+}
+
+.navbar-toggle {
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 80px;
+    z-index: 999;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.form-control {
+    margin: 10px 10px; 
+}
+  .form-control-header {
+      font-size: 12px;
+      margin-left: 5px;
+  }
+
+  .form-control label {
+    display: block;
+  }
+  
+  .form-control input {
+    width: 90%;
+    height: 30px;
+    margin: 5px;
+    padding: 3px 7px;
+    font-size: 11px;
+    border-radius: 5px;
+  }
+  
+  .form-control-check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .form-control-check label {
+    flex: 2;
+  }
+  
+  .form-control-check input {
+    flex: 0.5;
+    height: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    border: none;
+    margin: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 13px;
+    font-family: inherit;
+    text-align: center;
+  }
+
+  .btn-block {
+    display: block;
+    width: 85%;
+    height: 40px;
+  }
+
+span {
+    margin-left: 16px;
+}
