@@ -1,5 +1,6 @@
 # myBikeSG
-## Note
+
+## Note (darryl)
 App is inside `/mybikesg`, change directory to `/mybikesg` then run `npm start` to start the app in your local host
 
 Get Google Maps API key following [https://developers.google.com/maps/documentation/javascript/get-api-key], then create a `.env.local` file locally and enter
@@ -7,5 +8,3 @@ Get Google Maps API key following [https://developers.google.com/maps/documentat
 `REACT_APP_GOOGLE_MAPS_API_KEY = "{YOUR_API_KEY}" (without the curly braces)`
 
 I think you need to set up a billing account because I don't think it's free to use google maps API XD but they give $300 as a 'sign up bonus' which should be enough to last till presentation week
-
-- Darryl
