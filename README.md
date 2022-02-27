@@ -3,7 +3,7 @@
 ## Note (darryl)
 App is inside `/mybikesg`, change directory to `/mybikesg` then run `npm start` to start the app in your local host
 
-Get Google Maps API key following https://developers.google.com/maps/documentation/javascript/get-api-key , then create a `.env.local` file locally and enter
+Get Google Maps API key following https://developers.google.com/maps/documentation/javascript/get-api-key , then create a `.env.local` file locally OUTSIDE OF `/src` and enter
 
 `REACT_APP_GOOGLE_MAPS_API_KEY = "{YOUR_API_KEY}" (without the curly braces)`
 
