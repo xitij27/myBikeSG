@@ -1,17 +1,13 @@
 import React from 'react'
-import Drawer from './components/Drawer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Map from './components/Map'
+import {Main} from './components/Main'
+
 
 
 const App = () => {
     return (
         <>
-            <Map />
-            <Router>
-                <Drawer onSend={send_loc}/>
-            </Router>
-            
+            <Main onSend={send_loc}/>
             
         </>
     )
