@@ -1,6 +1,7 @@
 # myBikeSG
 
 ## Note (darryl)
+### DO NOT DO `npm install react` I broke my version doing that 💀
 App is inside `/mybikesg`, change directory to `/mybikesg` then run `npm start` to start the app in your local host
 
 Get Google Maps API key following https://developers.google.com/maps/documentation/javascript/get-api-key , then create a `.env.local` file locally **OUTSIDE OF `/src`** and enter
