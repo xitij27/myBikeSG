@@ -54,3 +54,15 @@ function signUp(email,password,DOB,Name,otp)
     } 
 }
 
+function signUp_V(email,password,DOB,Name,otp) 
+{ 
+    accs[email] = new Verifier_Acc(email,DOB,Name); 
+    OTPs[email] = new OTP(email); 
+    OTPs[email].generateOTP(email); 
+    chk = OTPs[email].checkOTP(otp); 
+    if(chk == true) 
+    { 
+        accs.set(email, obj); 
+    } 
+}
+
