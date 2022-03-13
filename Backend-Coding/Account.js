@@ -79,3 +79,4 @@ class Account
         return 1;
     }
 }
+module.exports = Account;
