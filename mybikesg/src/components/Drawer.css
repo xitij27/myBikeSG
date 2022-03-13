@@ -107,7 +107,7 @@
   margin: 5px;
   padding: 0.5rem;
   font-size: 11px;
-  border-radius: 5px;
+  border-radius: 80px;
   text-align: left;
 }
 
@@ -132,7 +132,7 @@
   color: #fff;
   border: none;
   margin: 10px 15px;
-  border-radius: 5px;
+  border-radius: 80px;
   cursor: pointer;
   text-decoration: none;
   font-size: 13px;
