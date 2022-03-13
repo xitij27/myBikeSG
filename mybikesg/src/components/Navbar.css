@@ -14,7 +14,7 @@
     text-align: center;
   
     color: #000000;
-    background: #ffffff;
+    background: #F5F5F5;
     opacity: 0.85;
     border-radius: 40px;
     border-width: 0.5px;
@@ -36,7 +36,7 @@
     text-align: center;
   
     color: #000000;
-    background: #ffffff;
+    background: #F5F5F5;
     opacity: 0.85;
     border-radius: 40px;
     border-width: 0.5px;
@@ -58,7 +58,7 @@
     text-align: center;
   
     color: #000000;
-    background: #ffffff;
+    background: #F5F5F5;
     opacity: 0.85;
     border-radius: 40px;
     border-width: 0.5px;
@@ -80,14 +80,13 @@
     text-align: center;
   
     color: #000000;
-    background: #ffffff;
+    background: #F5F5F5;
     opacity: 0.85;
     border-radius: 40px;
     border-width: 0.5px;
   }
   
   .btn-add {
-    transition-duration: 1s;
     position: absolute;
     width: 232px;
     height: 40px;
@@ -103,8 +102,30 @@
     text-align: center;
   
     color: #000000;
-    background: #ffffff;
+    background: #F5F5F5;
     opacity: 0.85;
     border-radius: 40px;
     border-width: 0.5px;
   }
+
+  .cloud {
+    height: 80px;
+    position: absolute;
+    z-index: 990;
+    justify-content: start;
+    top: 0px;
+    right: 0px;
+    align-items: center;
+  }
+
+.nav-cloud {
+  color: #808080;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 60px;
+  height: 30px;
+  width: 30px;
+  opacity: 0.85;
+  background: none;
+}

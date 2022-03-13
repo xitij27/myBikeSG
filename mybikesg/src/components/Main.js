@@ -36,7 +36,7 @@ const options = {
 const libraries = ["places"];
 
 
-export function Main({ onSend }) {
+export function Main({ }) {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -48,6 +48,19 @@ export function Main({ onSend }) {
         mapRef.current  = map;
     }, [])
 
+    const [start, setStart] = useState({lat: 0, lng: 0});
+    const [dest, setDest] = useState({lat: 0, lng: 0});
+
+    const send_loc = (locs) => {
+        console.log("in send_loc")
+        console.log(locs)
+        // console.log(locs.start)
+        setStart(locs.start)
+        setDest(locs.dest);
+        console.log(start.lat)
+        
+    }
+
     if (loadError) return "Error loading map"
     if (!isLoaded) return "Loading Map"
 
@@ -58,11 +71,15 @@ export function Main({ onSend }) {
         center={center}
         options={options}
         onLoad={onMapLoad}
-        ></GoogleMap>
-        
+        >
+        <Marker position={{lat: start.lat, lng: start.lng}}/>
+        <Marker position={{lat: dest.lat, lng: dest.lng}}/>
+        </GoogleMap>
         <Router>
-            <Drawer onSend={onSend}/>
+            <Drawer onSend={send_loc}/>
         </Router>
+        
+        
         
     </div>
 }
@@ -82,6 +99,7 @@ const Drawer = ({ onSend }) => {
             return
         }
         onSend({ start, dest, rack })
+        // getLoc({start, dest, rack})
     }
 
     return (
