@@ -1,3 +1,4 @@
+const Request = require('./Request.js');
 class FindRoute extends Request
 {
     constructor(user, requestID, initialLocation, destination)
@@ -7,6 +8,7 @@ class FindRoute extends Request
     }
     serviceRequest()
     {
+        console.log("Servicing request to FindRoute for ReqId = ", this.requestID);
         // TODO fill this with code
     }
     getDestination()
@@ -18,3 +20,4 @@ class FindRoute extends Request
         this.destination = destination
     }
 }
+module.exports = FindRoute;
