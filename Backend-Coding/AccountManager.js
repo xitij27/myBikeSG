@@ -28,7 +28,7 @@ class AccMgr
     }
 
     static resetPassword(email, otp, password) {
-        if (!(OTPs.get(email).checkOTP(otp))) {
+        if (!(AccMgr.OTPs.get(email).checkOTP(otp))) {
             return false;
         } else {
             AccMgr.accs.get(email).updatePassword(password);
