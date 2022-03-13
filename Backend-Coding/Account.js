@@ -41,10 +41,10 @@ class Account
         {
             for(var j = 0; j < 2; j++)
             {
-                this.password[i][j] = hash(password, HASHVALS[i][j]);
+                this.password[i][j] = this.hash(password, HASHVALS[i][j]);
             }
         }
-        this.disableAcc = false; // Password must be changed to un-disable account 
+        this.isDisabled = false; // Password must be changed to un-disable account 
     }
     hash(password, divisor)
     {
@@ -64,14 +64,14 @@ class Account
          * Returns 0 if password is incorrect
          * @param: {String} password The password to check
          */
-        if(this.disableAcc)
+        if(this.isDisabled)
         {
             return 2;
         }
-        no = Math.floor(3*Math.random());
+        let no = Math.floor(3*Math.random());
         for (var j = 0; j < 2; j++)
         {
-            if(hash(password, HASHVALS[no][j]) != this.password[no][j])
+            if(this.hash(password, HASHVALS[no][j]) != this.password[no][j])
             {
                 return 0;
             }
