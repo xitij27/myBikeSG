@@ -1,104 +1,110 @@
 .btn-home {
     position: absolute;
     width: 232px;
-    height: 58px;
+    height: 40px;
     left: 359px;
     top: 20px;
   
-    font-family: Montserrat;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 29px;
-    display: flex;
     align-items: center;
     text-align: center;
   
     color: #000000;
     background: #ffffff;
+    opacity: 0.85;
     border-radius: 40px;
+    border-width: 0.5px;
   }
   
   .btn-route {
     position: absolute;
     width: 232px;
-    height: 58px;
+    height: 40px;
     left: 641px;
     top: 20px;
   
-    font-family: Montserrat;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 29px;
-    display: flex;
     align-items: center;
     text-align: center;
   
     color: #000000;
     background: #ffffff;
+    opacity: 0.85;
     border-radius: 40px;
+    border-width: 0.5px;
   }
   
   .btn-repair {
     position: absolute;
     width: 232px;
-    height: 58px;
+    height: 40px;
     left: 923px;
     top: 20px;
   
-    font-family: Montserrat;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 29px;
-    display: flex;
     align-items: center;
     text-align: center;
   
     color: #000000;
     background: #ffffff;
+    opacity: 0.85;
     border-radius: 40px;
+    border-width: 0.5px;
   }
   
   .btn-racks {
     position: absolute;
     width: 232px;
-    height: 58px;
+    height: 40px;
     left: 1205px;
     top: 20px;
   
-    font-family: Montserrat;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 29px;
-    display: flex;
     align-items: center;
     text-align: center;
   
     color: #000000;
     background: #ffffff;
+    opacity: 0.85;
     border-radius: 40px;
+    border-width: 0.5px;
   }
   
   .btn-add {
+    transition-duration: 1s;
     position: absolute;
     width: 232px;
-    height: 58px;
+    height: 40px;
     left: 1487px;
     top: 20px;
   
-    font-family: Montserrat;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 29px;
-    display: flex;
     align-items: center;
     text-align: center;
   
     color: #000000;
     background: #ffffff;
+    opacity: 0.85;
     border-radius: 40px;
+    border-width: 0.5px;
   }
