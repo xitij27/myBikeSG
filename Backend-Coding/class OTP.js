@@ -31,3 +31,4 @@ class OTP
     return true;
    }
 }
+module.exports = OTP;
