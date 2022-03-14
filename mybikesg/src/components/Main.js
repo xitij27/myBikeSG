@@ -64,7 +64,13 @@ export function Main({ }) {
     }
 
     const markStart = React.useCallback(({lat, lng}) => {
+        console.log("marking start")
         setStart({lat, lng});
+    }, []);
+
+    const markDest = React.useCallback(({lat, lng}) => {
+        console.log("marking dest")
+        setDest({lat, lng});
     }, []);
 
     if (loadError) return "Error loading map"
@@ -87,7 +93,7 @@ export function Main({ }) {
         
         </GoogleMap>
         <Router>
-            <Drawer onSend={send_loc} panTo={panTo} markStart={markStart}/>
+            <Drawer onSend={send_loc} panTo={panTo} markStart={markStart} markDest={markDest}/>
         </Router>
         
         
@@ -95,7 +101,7 @@ export function Main({ }) {
     </div>
 }
 
-const Drawer = ({ onSend, panTo, markStart }) => {
+const Drawer = ({ onSend, panTo, markStart, markDest }) => {
     const [burger, setDrawer] = useState(false)
     const showDrawer = () => setDrawer(!burger)
 
@@ -135,7 +141,7 @@ const Drawer = ({ onSend, panTo, markStart }) => {
                                     placeholder="Starting Location"
                                     setInput={({lat, lng})=>setStart({lat, lng})}
                                     panTo={panTo}
-                                    markStart={markStart}
+                                    markMap={markStart}
                                 />
                             </div>
                             <div className="form-control">
@@ -143,6 +149,8 @@ const Drawer = ({ onSend, panTo, markStart }) => {
                                 <Search 
                                     placeholder="Ending Location"
                                     setInput={({lat, lng})=>setDest({lat, lng})}
+                                    panTo={panTo}
+                                    markMap={markDest}
                                 />
                             </div>
                             <div className="form-control form-control-check">
@@ -166,7 +174,7 @@ const Drawer = ({ onSend, panTo, markStart }) => {
     )
 }
 
-function Search({placeholder, setInput, panTo, markStart}) {
+function Search({placeholder, setInput, panTo, markMap}) {
     const {
         ready,
         value,
@@ -197,8 +205,8 @@ function Search({placeholder, setInput, panTo, markStart}) {
                 const { lat, lng } = await getLatLng(results[0]);
                 console.log(placeholder, {lat, lng});
                 setInput({lat, lng})
+                markMap({lat, lng})
                 panTo({lat, lng})
-                markStart({lat, lng})
               } catch(error) {
                   console.log("error in Search onSelect")
                   console.log(error)
