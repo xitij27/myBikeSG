@@ -8,14 +8,12 @@ import {Main} from './components/Main'
 const App = () => {
     return (
         <>
-            <Main onSend={send_loc}/>
+            <Main/>
             <Navbar/>
         </>
     )
 }
 
-const send_loc = (locs) => {
-    console.log(locs)
-}
+
 
 export default App
