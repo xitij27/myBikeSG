@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { GoogleMap, Marker, InfoWindow, useLoadScript } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
+    getGeocode,
+    getLatLng,
 } from "use-places-autocomplete";
 import {
     Combobox,
@@ -18,6 +18,7 @@ import * as FaIcons from "react-icons/fa";
 import * as GrIcons from "react-icons/gr";
 import MapStyle from './MapStyle'
 import "./Drawer.css";
+import rack_locs from "../data/lta-bicycle-rack-geojson.json";
 
 const mapContainerStyle = {
     width: "100vw",
@@ -41,20 +42,21 @@ export function Main({ }) {
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });
-    
+
+    const [selected, setSelected] = React.useState(null);
 
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
-        mapRef.current  = map;
+        mapRef.current = map;
     }, []);
 
-    const panTo = React.useCallback(({lat, lng}) => {
-        mapRef.current.panTo({lat, lng});
+    const panTo = React.useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(14);
     }, []);
 
-    const [start, setStart] = useState({lat: 0, lng: 0});
-    const [dest, setDest] = useState({lat: 0, lng: 0});
+    const [start, setStart] = useState({ lat: 0, lng: 0 });
+    const [dest, setDest] = useState({ lat: 0, lng: 0 });
 
 
     const send_loc = (locs) => {
@@ -63,14 +65,14 @@ export function Main({ }) {
 
     }
 
-    const markStart = React.useCallback(({lat, lng}) => {
+    const markStart = React.useCallback(({ lat, lng }) => {
         console.log("marking start")
-        setStart({lat, lng});
+        setStart({ lat, lng });
     }, []);
 
-    const markDest = React.useCallback(({lat, lng}) => {
+    const markDest = React.useCallback(({ lat, lng }) => {
         console.log("marking dest")
-        setDest({lat, lng});
+        setDest({ lat, lng });
     }, []);
 
     if (loadError) return "Error loading map"
@@ -78,26 +80,49 @@ export function Main({ }) {
 
     return <div>
         <GoogleMap
-        mapContainerStyle = {mapContainerStyle}
-        zoom={12.8}
-        center={center}
-        options={options}
-        onLoad={onMapLoad}
+            mapContainerStyle={mapContainerStyle}
+            zoom={12.8}
+            center={center}
+            options={options}
+            onLoad={onMapLoad}
         >
             if (start && start != "") {
-                <Marker position={{lat: start.lat, lng: start.lng}}/>
+                <Marker position={{ lat: start.lat, lng: start.lng }} />
             }
             if (dest && dest != "") {
-                <Marker position={{lat: dest.lat, lng: dest.lng}}/>
+                <Marker position={{ lat: dest.lat, lng: dest.lng }} />
             }
-        
+            {/* plot all the racks on the map */}
+            {rack_locs.features.map(rack => (
+                <Marker
+                    key={rack.properties.Name}
+                    position={{ lat: rack.geometry.coordinates[1], lng: rack.geometry.coordinates[0] }}
+                    icon={{
+                        url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                        scaledSize: new window.google.maps.Size(30, 30),
+                        anchor: new window.google.maps.Point(15, 0)
+                    }}
+                    onClick={() => {
+                        setSelected(rack)
+                    }}
+                />
+            ))}
+            {selected ? (<InfoWindow
+                position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
+                onCloseClick={() => { setSelected(null); }}
+            >
+                <div
+                    dangerouslySetInnerHTML={{ __html: selected.properties.Description }}
+                >
+                </div>
+            </InfoWindow>) : null}
         </GoogleMap>
         <Router>
-            <Drawer onSend={send_loc} panTo={panTo} markStart={markStart} markDest={markDest}/>
+            <Drawer onSend={send_loc} panTo={panTo} markStart={markStart} markDest={markDest} />
         </Router>
-        
-        
-        
+
+
+
     </div>
 }
 
@@ -105,8 +130,8 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
     const [burger, setDrawer] = useState(false)
     const showDrawer = () => setDrawer(!burger)
 
-    const [start, setStart] = useState({lat: 0, lng: 0})
-    const [dest, setDest] = useState({lat: 0, lng: 0})
+    const [start, setStart] = useState({ lat: 0, lng: 0 })
+    const [dest, setDest] = useState({ lat: 0, lng: 0 })
     const [rack, setRack] = useState(false)
 
     const onSubmit = (e) => {
@@ -123,49 +148,49 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
         <>
             <div className={burger ? "burger" : "not-burger"}>
                 <Link to="#" className="menu-bars">
-                    <FaIcons.FaBars onClick={showDrawer}/>
+                    <FaIcons.FaBars onClick={showDrawer} />
                 </Link>
             </div>
             <nav className={burger ? "nav-menu active" : "nav-menu"}>
                 <ul className='nav-menu-items'>
                     <li className="navbar-toggle">
                         <Link to="#" className='menu-bars'>
-                            <GrIcons.GrClose onClick={showDrawer}/>
+                            <GrIcons.GrClose onClick={showDrawer} />
                         </Link>
                     </li>
                     <li>
                         <form className="add-form" onSubmit={onSubmit}>
                             <div className="form-control">
                                 <label className="form-control-header">Starting Location</label>
-                                <Search 
+                                <Search
                                     placeholder="Starting Location"
-                                    setInput={({lat, lng})=>setStart({lat, lng})}
+                                    setInput={({ lat, lng }) => setStart({ lat, lng })}
                                     panTo={panTo}
                                     markMap={markStart}
                                 />
                             </div>
                             <div className="form-control">
                                 <label className="form-control-header">Ending Location</label>
-                                <Search 
+                                <Search
                                     placeholder="Ending Location"
-                                    setInput={({lat, lng})=>setDest({lat, lng})}
+                                    setInput={({ lat, lng }) => setDest({ lat, lng })}
                                     panTo={panTo}
                                     markMap={markDest}
                                 />
                             </div>
                             <div className="form-control form-control-check">
                                 <label className="form-control-header">Set nearest racks as destination</label>
-                                <input 
-                                type="checkbox"
-                                checked={rack}
-                                value={rack}
-                                onChange={(e)=>setRack(e.currentTarget.checked)}
+                                <input
+                                    type="checkbox"
+                                    checked={rack}
+                                    value={rack}
+                                    onChange={(e) => setRack(e.currentTarget.checked)}
                                 />
                             </div>
-                            <input 
-                            type="submit" 
-                            value="Submit" 
-                            className="btn btn-block"/>
+                            <input
+                                type="submit"
+                                value="Submit"
+                                className="btn btn-block" />
                         </form>
                     </li>
                 </ul>
@@ -174,56 +199,56 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
     )
 }
 
-function Search({placeholder, setInput, panTo, markMap}) {
+function Search({ placeholder, setInput, panTo, markMap }) {
     const {
         ready,
         value,
         suggestions: { status, data },
         setValue,
         clearSuggestions
-      } = usePlacesAutocomplete();
-    
-      const renderSuggestions = () => {
-        const suggestions = data.map(({ place_id, description }) => (
-          <ComboboxOption key={place_id} value={description} />
-        ));
-    
-        return (
-          <>
-            {suggestions}
-          </>
-        );
-      };
+    } = usePlacesAutocomplete();
 
-      return (
+    const renderSuggestions = () => {
+        const suggestions = data.map(({ place_id, description }) => (
+            <ComboboxOption key={place_id} value={description} />
+        ));
+
+        return (
+            <>
+                {suggestions}
+            </>
+        );
+    };
+
+    return (
         <div>
-          <Combobox onSelect={async (address) => {
-              setValue(address, false);
-              clearSuggestions();
-              try {
-                const results = await getGeocode({address});
-                const { lat, lng } = await getLatLng(results[0]);
-                console.log(placeholder, {lat, lng});
-                setInput({lat, lng})
-                markMap({lat, lng})
-                panTo({lat, lng})
-              } catch(error) {
-                  console.log("error in Search onSelect")
-                  console.log(error)
-              }
-              console.log(address);
-              }}
+            <Combobox onSelect={async (address) => {
+                setValue(address, false);
+                clearSuggestions();
+                try {
+                    const results = await getGeocode({ address });
+                    const { lat, lng } = await getLatLng(results[0]);
+                    console.log(placeholder, { lat, lng });
+                    setInput({ lat, lng })
+                    markMap({ lat, lng })
+                    panTo({ lat, lng })
+                } catch (error) {
+                    console.log("error in Search onSelect")
+                    console.log(error)
+                }
+                console.log(address);
+            }}
             >
-            <ComboboxInput
-              value={value}
-              placeholder={placeholder}
-              onChange={(e) => {setValue(e.target.value); setInput({lat:0,lng:0})}}
-              disabled={!ready}
-            />
-            <ComboboxPopover>
-              <ComboboxList>{status === "OK" && renderSuggestions()}</ComboboxList>
-            </ComboboxPopover>
-          </Combobox>
+                <ComboboxInput
+                    value={value}
+                    placeholder={placeholder}
+                    onChange={(e) => { setValue(e.target.value); setInput({ lat: 0, lng: 0 }) }}
+                    disabled={!ready}
+                />
+                <ComboboxPopover>
+                    <ComboboxList>{status === "OK" && renderSuggestions()}</ComboboxList>
+                </ComboboxPopover>
+            </Combobox>
         </div>
-      );
+    );
 }
