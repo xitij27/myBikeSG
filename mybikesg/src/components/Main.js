@@ -36,7 +36,7 @@ const options = {
 const libraries = ["places"];
 
 
-export function Main({ onSend }) {
+export function Main({ }) {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -46,7 +46,32 @@ export function Main({ onSend }) {
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current  = map;
-    }, [])
+    }, []);
+
+    const panTo = React.useCallback(({lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(14);
+    }, []);
+
+    const [start, setStart] = useState({lat: 0, lng: 0});
+    const [dest, setDest] = useState({lat: 0, lng: 0});
+
+
+    const send_loc = (locs) => {
+        console.log(locs)
+        setDest(locs.dest);
+
+    }
+
+    const markStart = React.useCallback(({lat, lng}) => {
+        console.log("marking start")
+        setStart({lat, lng});
+    }, []);
+
+    const markDest = React.useCallback(({lat, lng}) => {
+        console.log("marking dest")
+        setDest({lat, lng});
+    }, []);
 
     if (loadError) return "Error loading map"
     if (!isLoaded) return "Loading Map"
@@ -58,21 +83,30 @@ export function Main({ onSend }) {
         center={center}
         options={options}
         onLoad={onMapLoad}
-        ></GoogleMap>
+        >
+            if (start && start != "") {
+                <Marker position={{lat: start.lat, lng: start.lng}}/>
+            }
+            if (dest && dest != "") {
+                <Marker position={{lat: dest.lat, lng: dest.lng}}/>
+            }
         
+        </GoogleMap>
         <Router>
-            <Drawer onSend={onSend}/>
+            <Drawer onSend={send_loc} panTo={panTo} markStart={markStart} markDest={markDest}/>
         </Router>
+        
+        
         
     </div>
 }
 
-const Drawer = ({ onSend }) => {
+const Drawer = ({ onSend, panTo, markStart, markDest }) => {
     const [burger, setDrawer] = useState(false)
     const showDrawer = () => setDrawer(!burger)
 
-    const [start, setStart] = useState("")
-    const [dest, setDest] = useState("")
+    const [start, setStart] = useState({lat: 0, lng: 0})
+    const [dest, setDest] = useState({lat: 0, lng: 0})
     const [rack, setRack] = useState(false)
 
     const onSubmit = (e) => {
@@ -82,6 +116,7 @@ const Drawer = ({ onSend }) => {
             return
         }
         onSend({ start, dest, rack })
+        // getLoc({start, dest, rack})
     }
 
     return (
@@ -105,6 +140,8 @@ const Drawer = ({ onSend }) => {
                                 <Search 
                                     placeholder="Starting Location"
                                     setInput={({lat, lng})=>setStart({lat, lng})}
+                                    panTo={panTo}
+                                    markMap={markStart}
                                 />
                             </div>
                             <div className="form-control">
@@ -112,6 +149,8 @@ const Drawer = ({ onSend }) => {
                                 <Search 
                                     placeholder="Ending Location"
                                     setInput={({lat, lng})=>setDest({lat, lng})}
+                                    panTo={panTo}
+                                    markMap={markDest}
                                 />
                             </div>
                             <div className="form-control form-control-check">
@@ -135,7 +174,7 @@ const Drawer = ({ onSend }) => {
     )
 }
 
-function Search({placeholder, setInput}) {
+function Search({placeholder, setInput, panTo, markMap}) {
     const {
         ready,
         value,
@@ -166,8 +205,11 @@ function Search({placeholder, setInput}) {
                 const { lat, lng } = await getLatLng(results[0]);
                 console.log(placeholder, {lat, lng});
                 setInput({lat, lng})
+                markMap({lat, lng})
+                panTo({lat, lng})
               } catch(error) {
                   console.log("error in Search onSelect")
+                  console.log(error)
               }
               console.log(address);
               }}
@@ -175,7 +217,7 @@ function Search({placeholder, setInput}) {
             <ComboboxInput
               value={value}
               placeholder={placeholder}
-              onChange={(e) => {setValue(e.target.value);}}
+              onChange={(e) => {setValue(e.target.value); setInput({lat:0,lng:0})}}
               disabled={!ready}
             />
             <ComboboxPopover>
