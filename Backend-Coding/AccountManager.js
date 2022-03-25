@@ -1,10 +1,8 @@
 const ps = require('prompt-sync');
 const input = ps();
-
 const Account = require('./Account.js');
 const OTP = require('./OTP.js');
 const Verifier_Acc = require('./VerfierAcc.js');
-
 class AccMgr 
 {
     static accs = new Map();
@@ -37,10 +35,48 @@ class AccMgr
             return true;
         }
     }
-
-    static generateOTP(email) {
-        AccMgr.OTPs.set(email,new OTP(email));
+    static async sendEmail(email,otp)
+   {
+      var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+    service:'gmail',
+    auth: {
+     user: 'nodejs049@gmail.com',
+     pass: 'nodejs123'
     }
+    });
+
+    var mailOptions = {
+    from: 'nodejs049@gmail.com',
+    to: email,
+    subject: 'your otp',
+    text: otp
+    };
+    return new Promise(function (resolve, reject){
+        transporter.sendMail(mailOptions, (err, info) => {
+           if (err) {
+              console.log("error: ", err);
+              reject(err);
+           } else {
+              console.log(`Mail sent successfully!`);
+              resolve(info);
+           }
+        });
+     });
+   }
+
+
+   static generateOTP(email){    
+    var digits='0123456789';
+    let otp='';
+    for (let i = 0; i < 4; i++ ) 
+    {
+     otp += digits[Math.floor(Math.random() * 10)];
+    }
+    AccMgr.OTPs.set(email, new OTP(email,otp));
+    return otp;
+    }
+    
 
     static signUp(email, password, DOB, Name, otp) {
         let otp1 = AccMgr.OTPs.get(email);
@@ -62,12 +98,15 @@ class AccMgr
 }
 
 
-
-let email = input("Enter your email : ");
-let password = input("Enter your password : ");
-let dob = input("Enter your Date Of Birth : ");
-let name = input("Enter your name : ");
-AccMgr.generateOTP(email);
-let otp_user = input("Enter your otp : ");
-AccMgr.signUp_V(email,password,dob,name,otp_user);
-console.log("result is " + AccMgr.Login(email,password));
+async function main()
+{
+    let email = input("Enter your email : "); 
+    await AccMgr.sendEmail(email,AccMgr.generateOTP(email));
+    let password = input("Enter your password : ");
+    let dob = input("Enter your Date Of Birth : ");
+    let name = input("Enter your name : ");
+    let otp_user = input("Enter your otp : ");
+    AccMgr.signUp_V(email,password,dob,name,otp_user);
+    console.log("result is " + AccMgr.Login(email,password));
+}
+main();
