@@ -109,4 +109,11 @@ async function main()
     AccMgr.signUp_V(email,password,dob,name,otp_user);
     console.log("result is " + AccMgr.Login(email,password));
 }
-main();
+async function main2(email)
+{
+    console.log("Hi main 2 here");
+    await AccMgr.sendEmail(email, AccMgr.generateOTP(email));
+}
+//main2("HARSHRAO001@e.ntu.edu.sg");
+module.exports = AccMgr;
+module.exports = main2;
