@@ -18,7 +18,7 @@ import * as FaIcons from "react-icons/fa";
 import * as GrIcons from "react-icons/gr";
 import MapStyle from './MapStyle'
 import "./Drawer.css";
-import rack_locs from "../data/lta-bicycle-rack-geojson.json";
+import racks_lta_json from "../data/lta-bicycle-rack-geojson.json";
 
 const mapContainerStyle = {
     width: "100vw",
@@ -38,6 +38,7 @@ const libraries = ["places"];
 
 
 export function Main({ }) {
+    // misc stuff
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -50,15 +51,63 @@ export function Main({ }) {
         mapRef.current = map;
     }, []);
 
+
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(14);
     }, []);
 
+    // array to hold rack locations (LTA)
+    var racks_lta_locs = []
+    for (const rack_details of racks_lta_json.features) {
+        racks_lta_locs.push({ rack_details, "vis": true });
+    }
+
+    // array to hold rack locations (user supplied)
+    var racks_user_locs = []
+
+
+    // array to hold repair shop locations
+    var repair_shop_locs = []
+
+    // start and dest locations, {lat, lng}
     const [start, setStart] = useState({ lat: 0, lng: 0 });
     const [dest, setDest] = useState({ lat: 0, lng: 0 });
 
+    // this chunk is the logic for showing only markers in radius of start and dest
+    const range = 0.5 // 500m
+    var marker_lat, marker_lng, start_kx, start_dx, start_dy, dest_kx, dest_dx, dest_dy;
+    if (start && (start.lat !== 0 && start.lng !== 0)) {
+        // logic for lta racks, need to do one more for user added
+        for (const rack_lta_loc of racks_lta_locs) {
+            marker_lat = rack_lta_loc.rack_details.geometry.coordinates[1]
+            marker_lng = rack_lta_loc.rack_details.geometry.coordinates[0]
+            start_kx = Math.cos(Math.PI * start.lat / 180) * 111;
+            start_dx = Math.abs(start.lng - marker_lng) * start_kx;
+            start_dy = Math.abs(start.lat - marker_lat) * 111;
 
+            // if dest is given
+            if (dest && (dest.lat !== 0 && dest.lng !== 0)) {
+                dest_kx = Math.cos(Math.PI * dest.lat / 180) * 111;
+                dest_dx = Math.abs(dest.lng - marker_lng) * dest_kx;
+                dest_dy = Math.abs(dest.lat - marker_lat) * 111;
+                // if marker distance > range, make it disappear
+                if ((Math.sqrt(start_dx * start_dx + start_dy * start_dy) > range) && (Math.sqrt(dest_dx * dest_dx + dest_dy * dest_dy) > range)) {
+                    rack_lta_loc.vis = false;
+                } else rack_lta_loc.vis = true;
+            }
+            // if only start is given
+            else {
+                // if marker distance > range, make it disappear
+                if (Math.sqrt(start_dx * start_dx + start_dy * start_dy) > range) {
+                    rack_lta_loc.vis = false;
+                } else rack_lta_loc.vis = true;
+            }
+        }
+    }
+
+
+    // helper functions for misc stuff
     const send_loc = (locs) => {
         console.log(locs)
         setDest(locs.dest);
@@ -78,6 +127,8 @@ export function Main({ }) {
     if (loadError) return "Error loading map"
     if (!isLoaded) return "Loading Map"
 
+
+
     return <div>
         <GoogleMap
             mapContainerStyle={mapContainerStyle}
@@ -86,36 +137,43 @@ export function Main({ }) {
             options={options}
             onLoad={onMapLoad}
         >
-            if (start && start != "") {
+            {/* marks both starting and dest */}
+            if (start && (start.lat != 0 && start.lng != 0)) {
                 <Marker position={{ lat: start.lat, lng: start.lng }} />
             }
-            if (dest && dest != "") {
+            if (dest && (dest.lat != 0 && dest.lng != 0)) {
                 <Marker position={{ lat: dest.lat, lng: dest.lng }} />
             }
+
             {/* plot all the racks on the map */}
-            {rack_locs.features.map(rack => (
+            {racks_lta_locs.map(rack => (
                 <Marker
-                    key={rack.properties.Name}
-                    position={{ lat: rack.geometry.coordinates[1], lng: rack.geometry.coordinates[0] }}
+                    key={rack.rack_details.properties.Name}
+                    position={{ lat: rack.rack_details.geometry.coordinates[1], lng: rack.rack_details.geometry.coordinates[0] }}
                     icon={{
                         url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
                         scaledSize: new window.google.maps.Size(30, 30),
                         anchor: new window.google.maps.Point(15, 0)
                     }}
+                    visible={rack.vis}
                     onClick={() => {
                         setSelected(rack)
                     }}
                 />
             ))}
+
+
+            {/* Display info window when marker selected */}
             {selected ? (<InfoWindow
-                position={{ lat: selected.geometry.coordinates[1], lng: selected.geometry.coordinates[0] }}
+                position={{ lat: selected.rack_details.geometry.coordinates[1], lng: selected.rack_details.geometry.coordinates[0] }}
                 onCloseClick={() => { setSelected(null); }}
             >
                 <div
-                    dangerouslySetInnerHTML={{ __html: selected.properties.Description }}
+                    dangerouslySetInnerHTML={{ __html: selected.rack_details.properties.Description }}
                 >
                 </div>
             </InfoWindow>) : null}
+
         </GoogleMap>
         <Router>
             <Drawer onSend={send_loc} panTo={panTo} markStart={markStart} markDest={markDest} />
