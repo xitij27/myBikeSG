@@ -19,6 +19,7 @@ import * as GrIcons from "react-icons/gr";
 import MapStyle from './MapStyle'
 import "./Drawer.css";
 import racks_lta_json from "../data/lta-bicycle-rack-geojson.json";
+import bike_repairs_json from "../data/bike_repair.json";
 
 const mapContainerStyle = {
     width: "100vw",
@@ -44,7 +45,8 @@ export function Main({ }) {
         libraries,
     });
 
-    const [selected, setSelected] = React.useState(null);
+    const [selectedRack, setSelectedRack] = React.useState(null);
+    const [selectedShop, setSelectedShop] = React.useState(null);
 
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
@@ -63,12 +65,16 @@ export function Main({ }) {
         racks_lta_locs.push({ rack_details, "vis": true });
     }
 
+
     // array to hold rack locations (user supplied)
     var racks_user_locs = []
 
 
     // array to hold repair shop locations
     var repair_shop_locs = []
+    for (const repair_details of bike_repairs_json) {
+        repair_shop_locs.push({ repair_details, "vis": true });
+    }
 
     // start and dest locations, {lat, lng}
     const [start, setStart] = useState({ lat: 0, lng: 0 });
@@ -157,22 +163,53 @@ export function Main({ }) {
                     }}
                     visible={rack.vis}
                     onClick={() => {
-                        setSelected(rack)
+                        setSelectedRack(rack)
+                        setSelectedShop(null)
                     }}
                 />
             ))}
 
+            {/* plot all the repair shops on the map */}
+            {repair_shop_locs.map(shop => (
+                <Marker
+                    key={shop.repair_details.Name}
+                    position={{ lat: shop.repair_details.Lat, lng: shop.repair_details.Lng }}
+                    icon={{
+                        url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png",
+                        scaledSize: new window.google.maps.Size(30, 30),
+                        anchor: new window.google.maps.Point(15, 0)
+                    }}
+                    visible={shop.vis}
+                    onClick={() => {
+                        setSelectedShop(shop)
+                        setSelectedRack(null)
+                    }}
+                />
+            ))}
 
-            {/* Display info window when marker selected */}
-            {selected ? (<InfoWindow
-                position={{ lat: selected.rack_details.geometry.coordinates[1], lng: selected.rack_details.geometry.coordinates[0] }}
-                onCloseClick={() => { setSelected(null); }}
+            {/* Display info window for racks when marker selected */}
+            {selectedRack ? (<InfoWindow
+                position={{ lat: selectedRack.rack_details.geometry.coordinates[1], lng: selectedRack.rack_details.geometry.coordinates[0] }}
+                onCloseClick={() => { setSelectedRack(null); }}
             >
                 <div
-                    dangerouslySetInnerHTML={{ __html: selected.rack_details.properties.Description }}
+                    dangerouslySetInnerHTML={{ __html: selectedRack.rack_details.properties.Description }}
                 >
                 </div>
             </InfoWindow>) : null}
+
+            {/* Display info window for repair shops when marker selected */}
+            {selectedShop ? (<InfoWindow
+                position={{ lat: selectedShop.repair_details.Lat, lng: selectedShop.repair_details.Lng }}
+                onCloseClick={() => { setSelectedShop(null); }}
+            >
+                <div>
+                    <b>{selectedShop.repair_details.Name}</b>
+                    <p>{selectedShop.repair_details.Address.substring(0, selectedShop.repair_details.Address.indexOf('Tel'))}</p>
+                    <p>{selectedShop.repair_details.Telephone}</p>
+                </div>
+            </InfoWindow>) : null}
+
 
         </GoogleMap>
         <Router>
@@ -287,6 +324,7 @@ function Search({ placeholder, setInput, panTo, markMap }) {
                     const results = await getGeocode({ address });
                     const { lat, lng } = await getLatLng(results[0]);
                     console.log(placeholder, { lat, lng });
+                    console.log(",\n\"Lat\":" + lat + ",\n\"Lng\":" + lng);
                     setInput({ lat, lng })
                     markMap({ lat, lng })
                     panTo({ lat, lng })

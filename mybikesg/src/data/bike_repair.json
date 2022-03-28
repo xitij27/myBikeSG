@@ -1,0 +1,989 @@
+[
+  {
+    "Name": "MKP Bikes Pte Ltd (Showroom)",
+    "Address": "48 Toh Guan Road East\n01-104, Enterprise Hub\nSingapore 608586 Tel: +65 6462 6170",
+    "Telephone": "Tel: +65 6462 6170",
+    "Lat": 1.337078,
+    "Lng": 103.7547249
+  },
+  {
+    "Name": "ReEvolution",
+    "Address": "16 Morse Road #209\nSingapore 099228 Tel: +65 6272 2629",
+    "Telephone": "Tel: +65 6272 2629",
+    "Lat": 1.269789,
+    "Lng": 103.8149059
+  },
+  {
+    "Name": "Chapter 2 Cycle",
+    "Address": "451, Ang Mo Kio Ave.10,\n01-1761\nSingapore 560451 Tel: +65 6452 7168",
+    "Telephone": "Tel: +65 6452 7168",
+    "Lat": 1.368948,
+    "Lng": 103.855577
+  },
+  {
+    "Name": "Boom Cycle Pte Ltd",
+    "Address": "200 Turf Club Road, 02-01 The Grandstand, Singapore 287994 Tel: +65 6694 4733",
+    "Telephone": "Tel: +65 6694 4733",
+    "Lat": 1.337685,
+    "Lng": 103.793667
+  },
+  {
+    "Name": "Globalrider Trading Pte Ltd",
+    "Address": "170 Yishun Ave 6, Singapore 768959 Tel: +65 6734 2633 / +65 6734 1968",
+    "Telephone": "Tel: +65 6734 2633 / +65 6734 1968",
+    "Lat": 1.438563,
+    "Lng": 103.839285
+  },
+  {
+    "Name": "Wheels & Cycles - Balestier",
+    "Address": "627 Balestier Rd,\nSingapore 329916 Tel: +6596907908",
+    "Telephone": "Tel: +6596907908",
+    "Lat": 1.326396,
+    "Lng": 103.842781
+  },
+  {
+    "Name": "Bangkit Bicycle Shop",
+    "Address": "259 Bukit Panjang Ring Road,\n01-16, Singapore 671259 Tel: +65 9043 3565",
+    "Telephone": "Tel: +65 9043 3565",
+    "Lat": 1.377432,
+    "Lng": 103.77279
+  },
+  {
+    "Name": "Procycle by CycleMax",
+    "Address": "920 East Coast Parkway\n01-11, Parkland Green\nSingapore 449875 Tel: +6563482912",
+    "Telephone": "Tel: +6563482912",
+    "Lat": 1.298913,
+    "Lng": 103.905838
+  },
+  {
+    "Name": "Lim Seng Kee Cycle Company",
+    "Address": "374 Bukit Batok Street 31, Singapore 650374 Tel: +65 6560 0775",
+    "Telephone": "Tel: +65 6560 0775",
+    "Lat": 1.358103,
+    "Lng": 103.750591
+  },
+  {
+    "Name": "Hin Leong Cycle",
+    "Address": "71 Lorong 4 Toa Payoh\n01-377\nSingapore 310071 Tel: +65 6253 5341",
+    "Telephone": "Tel: +65 6253 5341",
+    "Lat": 1.334132,
+    "Lng": 103.852179
+  },
+  {
+    "Name": "BikeLink",
+    "Address": "Blk926 #01-177\nYishun Central 1 Singapore 760926 Tel: +6567564481",
+    "Telephone": "Tel: +6567564481",
+    "Lat": 1.427895,
+    "Lng": 103.837806
+  },
+  {
+    "Name": "E-Walker",
+    "Address": "3005 Ubi Ave 3\n01-52\nSingapore 408861 Tel: +65 6742 2003",
+    "Telephone": "Tel: +65 6742 2003",
+    "Lat": 1.331139,
+    "Lng": 103.8924119
+  },
+  {
+    "Name": "Yap Bicycle Compania",
+    "Address": "64 Tai Hwan Grove,\nSingapore 555496 Tel: +6591113130",
+    "Telephone": "Tel: +6591113130",
+    "Lat": 1.356124,
+    "Lng": 103.859353
+  },
+  {
+    "Name": "Hello, Bicycle!",
+    "Address": "135 Middle Road,\n01-01 Byland Building,\nSingapore 188975 Tel: +65 6333 0054",
+    "Telephone": "Tel: +65 6333 0054",
+    "Lat": 1.29943,
+    "Lng": 103.852738
+  },
+  {
+    "Name": "J33:3",
+    "Address": "792A Woodlands Avenue 6 (MSCP)\nSingapore 731792",
+    "Telephone": null,
+    "Lat": 1.44261,
+    "Lng": 103.801733
+  },
+  {
+    "Name": "Super Pro Bike Pte. Ltd.",
+    "Address": "450 Sims Avenue\nSingapore 387540 Tel: +6567448817",
+    "Telephone": "Tel: +6567448817",
+    "Lat": 1.315507,
+    "Lng": 103.885779
+  },
+  {
+    "Name": "Teck Hock Hin Trading",
+    "Address": "128 Bedok North Street 2,\n01-16, Singapore 460128 Tel: +6564427729",
+    "Telephone": "Tel: +6564427729",
+    "Lat": 1.32785,
+    "Lng": 103.9387
+  },
+  {
+    "Name": "Entro Cycles",
+    "Address": "50 Serangoon North Avenue 4\n01-13, First Centre\nSingapore 555856 Tel: +65 6481 9195",
+    "Telephone": "Tel: +65 6481 9195",
+    "Lat": 1.375532,
+    "Lng": 103.875641
+  },
+  {
+    "Name": "Elite Bike Trading",
+    "Address": "888 Woodlands Drive 50\n01-707\nSingapore 730888 Tel: +65 6368 5900",
+    "Telephone": "Tel: +65 6368 5900",
+    "Lat": 1.437703,
+    "Lng": 103.79527
+  },
+  {
+    "Name": "Scooter Hub - Kovan",
+    "Address": "1011 Upper Serangoon Road,\n01-02 Singapore 534749 Tel: +6597762050 / +6581001009 / +65 6386 0701",
+    "Telephone": "Tel: +6597762050 / +6581001009 / +65 6386 0701",
+    "Lat": 1.362598,
+    "Lng": 103.887548
+  },
+  {
+    "Name": "Tiong Hin (Bukit Merah)",
+    "Address": "163 Bukit Merah Central\n02-3607\nSingapore 150163 Tel: +6562734853",
+    "Telephone": "Tel: +6562734853",
+    "Lat": 1.284152,
+    "Lng": 103.816987
+  },
+  {
+    "Name": "T3 Bike Gears",
+    "Address": "79 Upper East Coast Road\nSingapore 455219 Tel: +6564416828",
+    "Telephone": "Tel: +6564416828",
+    "Lat": 1.313086,
+    "Lng": 103.9275059
+  },
+  {
+    "Name": "7 Cycle Workshop",
+    "Address": "180 Woodlands Industrial Park E5,\n01-14B, Woodlands Auto Hub,\nSingapore 757512 Tel: +6590055660",
+    "Telephone": "Tel: +6590055660",
+    "Lat": 1.452053,
+    "Lng": 103.7927459
+  },
+  {
+    "Name": "Cycle Project Store",
+    "Address": "59 Eng Hoon street\n#01-79\nSingapore 160059 Tel: +6594576343",
+    "Telephone": "Tel: +6594576343",
+    "Lat": 1.284274,
+    "Lng": 103.833256
+  },
+  {
+    "Name": "Creed Cycle",
+    "Address": "3018 Bedok north street 5\n04-04\nSingapore 486132\nTel: +65 9452 8213",
+    "Telephone": "Tel: +65 9452 8213",
+    "Lat": 1.33521,
+    "Lng": 103.947677
+  },
+  {
+    "Name": "Crankworkz",
+    "Address": "50 Serangoon North Ave 4\n#03-05\nFirst Centre\nSingapore 555856",
+    "Telephone": null,
+    "Lat": 1.375532,
+    "Lng": 103.875641
+  },
+  {
+    "Name": "Treknology3 (City)",
+    "Address": "91 Tanglin Place,\n01-02, Singapore 247918 Tel: +6567327119",
+    "Telephone": "Tel: +6567327119",
+    "Lat": 1.305285,
+    "Lng": 103.824945
+  },
+  {
+    "Name": "Tay Junction (Bukit Timah)",
+    "Address": "733 Bukit Timah Road,\n01-01/04/07, 2nd Avenue Junction\nSingapore 269748 Tel: +656462 5158 / +656466 9535 (Apparel Store) / +656314 4883",
+    "Telephone": "Tel: +656462 5158 / +656466 9535 (Apparel Store) / +656314 4883",
+    "Lat": 1.32982,
+    "Lng": 103.799538
+  },
+  {
+    "Name": "Rodalink-SG",
+    "Address": "18 Boon Lay Way\n01-98D, Tradehub21\nSingapore 609966\nTel: +65 6795 4320",
+    "Telephone": "Tel: +65 6795 4320",
+    "Lat": 1.328234,
+    "Lng": 103.753597
+  },
+  {
+    "Name": "BikeLabz",
+    "Address": "3012 Bedok Industrial Park E,\n03-2018\nSingapore 489978 Tel: +65 6441 2426",
+    "Telephone": "Tel: +65 6441 2426",
+    "Lat": 1.3367659,
+    "Lng": 103.949887
+  },
+  {
+    "Name": "Bike Haus International",
+    "Address": "553 Bukit Timah Road\n(junction of Farrer Road)\nSingapore 269693\nTel: +65 6468 3887",
+    "Telephone": "Tel: +65 6468 3887",
+    "Lat": 1.323148,
+    "Lng": 103.8119
+  },
+  {
+    "Name": "Kian Hong Cycle Pte Ltd",
+    "Address": "3 Kaki Bukit Road 1 #B1-05 Eunos Technolink Singapore 415935 Tel: +65 67495787",
+    "Telephone": "Tel: +65 67495787",
+    "Lat": 1.334673,
+    "Lng": 103.901678
+  },
+  {
+    "Name": "Cycle Craft",
+    "Address": "282 East Coast Road\nSingapore 428946\n(at Junction of East Coast Rd & Still Rd) Tel: +65 6345 8500",
+    "Telephone": "Tel: +65 6345 8500",
+    "Lat": 1.308228,
+    "Lng": 103.909074
+  },
+  {
+    "Name": "The Urban Bike",
+    "Address": "2 Yishun Industrial Street 1\n07-21, Northpoint Bizhub\nSingapore 768159 Tel: +6598796813 (LEM) / +6596161179 (EC) / +6583161030 (Eileen)",
+    "Telephone": "Tel: +6598796813 (LEM) / +6596161179 (EC) / +6583161030 (Eileen)",
+    "Lat": 1.435675,
+    "Lng": 103.84331
+  },
+  {
+    "Name": "Built Wheels",
+    "Address": "57 Eng Hoon Street #01-80 Singapore 160057 Tel: +65 9628 7759",
+    "Telephone": "Tel: +65 9628 7759",
+    "Lat": 1.284836,
+    "Lng": 103.833304
+  },
+  {
+    "Name": "Hup Leong Company",
+    "Address": "51 Chin Swee Road\n01-107\nSingapore 160051 Tel: +65 6532 3700",
+    "Telephone": "Tel: +65 6532 3700",
+    "Lat": 1.287465,
+    "Lng": 103.841927
+  },
+  {
+    "Name": "Gravity Racing",
+    "Address": "65 Ubi Road 1,\n01-96, Oxley BizHub 1,\nSingapore 408729 Tel: +65 6702 7965",
+    "Telephone": "Tel: +65 6702 7965",
+    "Lat": 1.332529,
+    "Lng": 103.890206
+  },
+  {
+    "Name": "BHC Bikes (Ban Hin Chan)",
+    "Address": "804 North Bridge Road\nSingapore 198772 Tel: +65 6337 3602",
+    "Telephone": "Tel: +65 6337 3602",
+    "Lat": 1.303946,
+    "Lng": 103.86038
+  },
+  {
+    "Name": "Tiong Hin (Hougang)",
+    "Address": "108, Hougang Ave 1,\n01-1293,\nSingapore 530108 Tel: +65 6280 0416",
+    "Telephone": "Tel: +65 6280 0416",
+    "Lat": 1.352862,
+    "Lng": 103.889926
+  },
+  {
+    "Name": "Rollite Cycles",
+    "Address": "18 Marsiling Lane\n01-255\nSingapore 730018 Tel: +6562698331",
+    "Telephone": "Tel: +6562698331",
+    "Lat": 1.443049,
+    "Lng": 103.777685
+  },
+  {
+    "Name": "Soon Hock Store",
+    "Address": "330 Ang Mo Kio Avenue 1,\n01-1809, Singapore 560330 Tel: +6564555006",
+    "Telephone": "Tel: +6564555006",
+    "Lat": 1.362468,
+    "Lng": 103.85096
+  },
+  {
+    "Name": "BikeActually",
+    "Address": "140 Paya Lebar Road,\n09-11 AZ@Paya Lebar,\nSingapore 409015 Tel: +65 9824 9823",
+    "Telephone": "Tel: +65 9824 9823",
+    "Lat": 1.327334,
+    "Lng": 103.89092
+  },
+  {
+    "Name": "Las Maquinas (Yeti BT)",
+    "Address": "170 Upper Bukit Timah Road,\n02-64, Bukit Timah Shopping Centre,\nSingapore 588179\n(Near to DTL Beauty World Station Exit A) Tel: +65 9695 2836",
+    "Telephone": "Tel: +65 9695 2836",
+    "Lat": 1.343236,
+    "Lng": 103.775833
+  },
+  {
+    "Name": "Kahfi Sports",
+    "Address": "312 Old Birdcage Walk, Singapore 798485 Tel: +65 9851 5774",
+    "Telephone": "Tel: +65 9851 5774",
+    "Lat": 1.410061,
+    "Lng": 103.870896
+  },
+  {
+    "Name": "Coast Cycles",
+    "Address": "54 Siglap Drive\nSingapore 456176 Tel: +65 9760 0619",
+    "Telephone": "Tel: +65 9760 0619",
+    "Lat": 1.31637,
+    "Lng": 103.920261
+  },
+  {
+    "Name": "NSR Bikes - Bukit Batok",
+    "Address": "2 Bukit Batok Street 23,\n01-14, Bukit Batok Connection,\nSingapore 659554 Tel: +65 9668 5570 / +65 9138 5578",
+    "Telephone": "Tel: +65 9668 5570 / +65 9138 5578",
+    "Lat": 1.343881,
+    "Lng": 103.753278
+  },
+  {
+    "Name": "Treknology3 (Mega Showroom)",
+    "Address": "14 Jalan Kilang Barat\nSingapore 159356\nTel: +6562738616",
+    "Telephone": "Tel: +6562738616",
+    "Lat": 1.284663,
+    "Lng": 103.808186
+  },
+  {
+    "Name": "Hong Soon Seng Cycling - Hougang",
+    "Address": "684 Hougang Avenue 8,\n01-929\nSingapore 530684 Tel: +65 6387 1570",
+    "Telephone": "Tel: +65 6387 1570",
+    "Lat": 1.373235,
+    "Lng": 103.886822
+  },
+  {
+    "Name": "Fishtail Cyclery",
+    "Address": "18 Kaki Bukit Rd 3\n#03-18, Singapore 415978. Tel: +65 8687 6686",
+    "Telephone": "Tel: +65 8687 6686",
+    "Lat": 1.337556,
+    "Lng": 103.902894
+  },
+  {
+    "Name": "Happy Cycle",
+    "Address": "355 Sembawang Way,\n01-05,\nSingapore 750355 Tel: +65 6481 2213",
+    "Telephone": "Tel: +65 6481 2213",
+    "Lat": 1.449646,
+    "Lng": 103.818602
+  },
+  {
+    "Name": "Happy & Joy Trading",
+    "Address": "961 Jurong West Street 92,\n01-190, Singapore 640961 Tel: +65 6793 5602",
+    "Telephone": "Tel: +65 6793 5602",
+    "Lat": 1.341236,
+    "Lng": 103.691933
+  },
+  {
+    "Name": "Chin Hong Cycle Co.",
+    "Address": "313 Joo Chiat Rd\nSingapore 427564 Tel: +65 6447 3766",
+    "Telephone": "Tel: +65 6447 3766",
+    "Lat": 1.309279,
+    "Lng": 103.902534
+  },
+  {
+    "Name": "Bike Continent",
+    "Address": "816 Upper Bukit Timah Road Singapore 678149 Tel: +6565475455",
+    "Telephone": "Tel: +6565475455",
+    "Lat": 1.372978,
+    "Lng": 103.763035
+  },
+  {
+    "Name": "Bike Culture",
+    "Address": "12 Telok Blangah Crescent 01-107 Singapore 090012",
+    "Telephone": null,
+    "Lat": 1.27719,
+    "Lng": 103.819525
+  },
+  {
+    "Name": "Tiong Hin (Midview City)",
+    "Address": "28 Sin Ming Lane,\n04-133, Midview City\nSingapore 573972  Tel: +6566590903",
+    "Telephone": "Tel: +6566590903",
+    "Lat": 1.36001,
+    "Lng": 103.8341669
+  },
+  {
+    "Name": "Cycle Worx",
+    "Address": "421 Tagore Industrial Avenue,\n01-01, Tagore 8,\nSingapore 787805 Tel: +65 6255 3848",
+    "Telephone": "Tel: +65 6255 3848",
+    "Lat": 1.384602,
+    "Lng": 103.827387
+  },
+  {
+    "Name": "Fazz Bike360",
+    "Address": "465 Crawford Lane\n02-12\nSingapore 190465 Tel: +65 6274 0074",
+    "Telephone": "Tel: +65 6274 0074",
+    "Lat": 1.305194,
+    "Lng": 103.862594
+  },
+  {
+    "Name": "Seng Bee Bicycle Shop",
+    "Address": "5 Upper Boon Keng Road,\n01-12, Singapore 380005 Tel: +6567423707 / +6567429858",
+    "Telephone": "Tel: +6567423707 / +6567429858",
+    "Lat": 1.31265,
+    "Lng": 103.87257
+  },
+  {
+    "Name": "D'Bike Studio",
+    "Address": "Blk 529 Hougang Avenue 6\n#01-249 Singapore 530529 Tel: +6584997120",
+    "Telephone": "Tel: +6584997120",
+    "Lat": 1.375495,
+    "Lng": 103.890531
+  },
+  {
+    "Name": "Tube Innovation",
+    "Address": "407 Ang Mo Kio Avenue 10,\n01-765\nSingapore 560407 Tel: +6564529976",
+    "Telephone": "Tel: +6564529976",
+    "Lat": 1.361909,
+    "Lng": 103.85527
+  },
+  {
+    "Name": "NSR Bikes - Sembawang",
+    "Address": "59D Jalan Malu Malu\nSingapore 769674\n(Behind Sembawang Shopping Centre - take free SSC shuttle bus from Sembawang MRT) Tel: +65 9138 5578",
+    "Telephone": "Tel: +65 9138 5578",
+    "Lat": 1.443324,
+    "Lng": 103.825689
+  },
+  {
+    "Name": "The Service Course",
+    "Address": "6A Shenton Way #01-12 Singapore 068815 Tel: 92302776",
+    "Telephone": "Tel: 92302776",
+    "Lat": 1.278138,
+    "Lng": 103.849131
+  },
+  {
+    "Name": "CycleLogy",
+    "Address": "18 Boon Lay Way\n02-126, Tradehub21,\nSingapore 609966\nTel: +65 9010 2730",
+    "Telephone": "Tel: +65 9010 2730",
+    "Lat": 1.328234,
+    "Lng": 103.753597
+  },
+  {
+    "Name": "Cannasia@Frankel",
+    "Address": "83 FRANKEL AVENUE Singapore 458211 Tel: +65 6441 4772",
+    "Telephone": "Tel: +65 6441 4772",
+    "Lat": 1.315081,
+    "Lng": 103.918994
+  },
+  {
+    "Name": "Inner City Rhythm",
+    "Address": "57 Joo Chiat Place\nSingapore 627781 Tel: +65 6440 0398",
+    "Telephone": "Tel: +65 6440 0398",
+    "Lat": 1.3081259,
+    "Lng": 103.673978
+  },
+  {
+    "Name": "Fab's Cycle",
+    "Address": "3 Pickering Street,\n01-53 Nankin Row China Square Central,\nSingapore 048660 Tel: +65 6720 8845",
+    "Telephone": "Tel: +65 6720 8845",
+    "Lat": 1.284855,
+    "Lng": 103.847664
+  },
+  {
+    "Name": "The Skid Kid",
+    "Address": "158 Bukit Batok Street 11,\n01-220, Singapore 650158 Tel: +6590037428",
+    "Telephone": "Tel: +6590037428",
+    "Lat": 1.348769,
+    "Lng": 103.743143
+  },
+  {
+    "Name": "Trail+",
+    "Address": "16 Teck Whye Lane,\n01-123, Singapore 680016 Tel: +6591832244",
+    "Telephone": "Tel: +6591832244",
+    "Lat": 1.3785559,
+    "Lng": 103.754891
+  },
+  {
+    "Name": "Yong Hin Chan Co.",
+    "Address": "510 Bedok North Street 3\n01-41\nSingapore 460510 Tel: +6564445610",
+    "Telephone": "Tel: +6564445610",
+    "Lat": 1.332105,
+    "Lng": 103.930618
+  },
+  {
+    "Name": "BikeMartsg",
+    "Address": "140 Sims Ave\nSingapore 387462\n Tel: 8806 1843",
+    "Telephone": "Tel: 8806 1843",
+    "Lat": 1.314219,
+    "Lng": 103.878851
+  },
+  {
+    "Name": "Mighty Velo",
+    "Address": "239 Lavender Street\nSingapore 338793 Tel: +65 6396 6280 / +65 6396 6281",
+    "Telephone": "Tel: +65 6396 6280 / +65 6396 6281",
+    "Lat": 1.315393,
+    "Lng": 103.859138
+  },
+  {
+    "Name": "Alywin Cycle",
+    "Address": "137 Teck Whye Lane\n01-331, Teck Whye Shopping Centre\nSingapore 680137 Tel: +65 6763 0779",
+    "Telephone": "Tel: +65 6763 0779",
+    "Lat": 1.380057,
+    "Lng": 103.752243
+  },
+  {
+    "Name": "Velo Fit",
+    "Address": "21 Woodlands Close,\n#04-37, Primz Bizhub,\nSingapore 737854\n(By Appointment Only) Tel: +6596372892",
+    "Telephone": "Tel: +6596372892",
+    "Lat": 1.4340771,
+    "Lng": 103.8035138
+  },
+  {
+    "Name": "1 2 Cycle - Marine Parade",
+    "Address": "326 Tanjong Katong Road Singapore 437104 Tel: +65 63457112",
+    "Telephone": "Tel: +65 63457112",
+    "Lat": 1.304244,
+    "Lng": 103.896371
+  },
+  {
+    "Name": "Bikes n Bites",
+    "Address": "100G Pasir Panjang Road,\n01-11, Interlocal Centre\nSingapore 118523 Tel: +6564699964",
+    "Telephone": "Tel: +6564699964",
+    "Lat": 1.2775749,
+    "Lng": 103.796356
+  },
+  {
+    "Name": "AttitudeBikes",
+    "Address": "118 Telok Kurau Road\nSingapore 423803 Tel: +65 6344 4579",
+    "Telephone": "Tel: +65 6344 4579",
+    "Lat": 1.31464,
+    "Lng": 103.909858
+  },
+  {
+    "Name": "BYX - Bukit Timah",
+    "Address": "6 Hindhede Road,\nSingapore 589242 Tel: +6564699614",
+    "Telephone": "Tel: +6564699614",
+    "Lat": 1.314521,
+    "Lng": 103.855865
+  },
+  {
+    "Name": "Heap Hong & Co",
+    "Address": "683 Tessensohn Road\n01-113\nSingapore 210683 Tel: +65 6293 1286",
+    "Telephone": "Tel: +65 6293 1286",
+    "Lat": 1.314521,
+    "Lng": 103.855865
+  },
+  {
+    "Name": "BYX - River Valley",
+    "Address": "403 River Valley Road,\nSingapore 248301 Tel: +65 6235 5221",
+    "Telephone": "Tel: +65 6235 5221",
+    "Lat": 1.295485,
+    "Lng": 103.830119
+  },
+  {
+    "Name": "RNE Bike Shop",
+    "Address": "116 Bishan Street 12,\n01-32,\nSingapore 570116 Tel: +65 6734 0318",
+    "Telephone": "Tel: +65 6734 0318",
+    "Lat": 1.3477539,
+    "Lng": 103.8493249
+  },
+  {
+    "Name": "Radstation",
+    "Address": "1 Commonwealth Lane,\n01-04, One Commonwealth\nSingapore 149544 Tel: +6564734988",
+    "Telephone": "Tel: +6564734988",
+    "Lat": 1.304438,
+    "Lng": 103.796798
+  },
+  {
+    "Name": "Alliance Bike Store / RayXtreme",
+    "Address": "16 Arumugam Road\n01-02, LTC Building Block D,\nSingapore 406691 Tel: +65 6400 4221",
+    "Telephone": "Tel: +65 6400 4221",
+    "Lat": 1.3253532,
+    "Lng": 103.8915152
+  },
+  {
+    "Name": "CW Lim Trading",
+    "Address": "46-3 Commonwealth Drive,\n01-396, Singapore 140463\nWe are both a bicycle and hardware shop. Tel: +65 6479 2968",
+    "Telephone": "Tel: +65 6479 2968",
+    "Lat": 1.2999719,
+    "Lng": 103.797654
+  },
+  {
+    "Name": "Wheeler's Yard",
+    "Address": "28 Lorong Ampas\nSingapore 328781 Tel: +6597261183",
+    "Telephone": "Tel: +6597261183",
+    "Lat": 1.326623,
+    "Lng": 103.852831
+  },
+  {
+    "Name": "Swee Hock Bicycle Shop",
+    "Address": "88 Bedok North Street 4,\n01-141, Singapore 460088 Tel: +6564445220",
+    "Telephone": "Tel: +6564445220",
+    "Lat": 1.332656,
+    "Lng": 103.939444
+  },
+  {
+    "Name": "Cityrider",
+    "Address": "252 Jurong East Street 24,\n01-119, Singapore 600252 Tel: +65 6562 1098",
+    "Telephone": "Tel: +65 6562 1098",
+    "Lat": 1.343415,
+    "Lng": 103.738456
+  },
+  {
+    "Name": "Elite Custom Pte Ltd",
+    "Address": "2 Thomson Road\n01-649, Balestier Hill Shopping Centre\nSingapore 320002 Tel: +65 6256 2028",
+    "Telephone": "Tel: +65 6256 2028",
+    "Lat": 1.325893,
+    "Lng": 103.8429309
+  },
+  {
+    "Name": "Bacycle",
+    "Address": "6 Yishun Industrial Street 1,\n04-09,\nSingapore 768892 Tel: +65 8511 4120",
+    "Telephone": "Tel: +65 8511 4120",
+    "Lat": 1.434758,
+    "Lng": 103.844703
+  },
+  {
+    "Name": "Bike Terminal",
+    "Address": "335 Smith Street,\n01-009 Chinatown Complex,\nSingapore 050335 Tel: +65 6534 1068",
+    "Telephone": "Tel: +65 6534 1068",
+    "Lat": 1.282573,
+    "Lng": 103.843098
+  },
+  {
+    "Name": "Hwa Aik Bicycle Trading",
+    "Address": "146 Changi Road,\nSingapore 419726 Tel: +65 6552 7780",
+    "Telephone": "Tel: +65 6552 7780",
+    "Lat": 1.316908,
+    "Lng": 103.901794
+  },
+  {
+    "Name": "Velo Velo Cycle",
+    "Address": "18 Sin Ming Lane,\n04-05, Midview City,\nSingapore 573960 Tel: +6592304521",
+    "Telephone": "Tel: +6592304521",
+    "Lat": 1.358681,
+    "Lng": 103.8341389
+  },
+  {
+    "Name": "Hua Hin & Co.",
+    "Address": "605 Balestier Road\nSingapore 329905 Tel: +65 6256 6219",
+    "Telephone": "Tel: +65 6256 6219",
+    "Lat": 1.326428,
+    "Lng": 103.843281
+  },
+  {
+    "Name": "Bike Nest",
+    "Address": "50 Serangoon North Avenue 4,\n03-05, First Centre,\nSingapore 555856 Tel: +65 8500 9042",
+    "Telephone": "Tel: +65 8500 9042",
+    "Lat": 1.375532,
+    "Lng": 103.875641
+  },
+  {
+    "Name": "Choo Huat & Co",
+    "Address": "352 Clementi Avenue 2,\n01-123, Singapore 120352 Tel: +65 6776 0122",
+    "Telephone": "Tel: +65 6776 0122",
+    "Lat": 1.314595,
+    "Lng": 103.77153
+  },
+  {
+    "Name": "RideWorx",
+    "Address": "16 Lim Tua Tow Road, Singapore 547752 Tel: +6597916606",
+    "Telephone": "Tel: +6597916606",
+    "Lat": 1.353962,
+    "Lng": 103.87684
+  },
+  {
+    "Name": "L&T Cycle",
+    "Address": "482 Tampines Street 43,\n01-230, Singapore 520482 Tel: +65 6786 3313",
+    "Telephone": "Tel: +65 6786 3313",
+    "Lat": 1.361307,
+    "Lng": 103.952521
+  },
+  {
+    "Name": "JR Cycle Services",
+    "Address": "26 Sin Min Lane\n03-126 Singapore 573971 Tel: +65 8126 7148",
+    "Telephone": "Tel: +65 8126 7148",
+    "Lat": 1.359509,
+    "Lng": 103.833969
+  },
+  {
+    "Name": "All Bicycle Shop",
+    "Address": "Blk 620 Hougang Ave 8 #01-272 Singapore 530620 Tel: 91961216",
+    "Telephone": "Tel: 91961216",
+    "Lat": 1.370154,
+    "Lng": 103.883778
+  },
+  {
+    "Name": "My Bike Shop",
+    "Address": "213 Henderson Road #01-06 Singapore 159553 Tel: +65 6274 3968",
+    "Telephone": "Tel: +65 6274 3968",
+    "Lat": 1.281307,
+    "Lng": 103.819278
+  },
+  {
+    "Name": "Tay Junction (Vertex)",
+    "Address": "33 Ubi Avenue 3,\n01-18/19, The Vertex\nSingapore 408868 Tel: +6566369731 (Specialized) / +6568343611 (Giant)",
+    "Telephone": "Tel: +6566369731 (Specialized) / +6568343611 (Giant)",
+    "Lat": 1.33295,
+    "Lng": 103.894131
+  },
+  {
+    "Name": "Culture Storck",
+    "Address": "11 Thong Soon Avenue, Singapore 787438 Tel: +65 6459 2919",
+    "Telephone": "Tel: +65 6459 2919",
+    "Lat": 1.397417,
+    "Lng": 103.818749
+  },
+  {
+    "Name": "PassionGadgets.com",
+    "Address": "1 Irving Place,\n01-15, The Commerze@Irving,\nSingapore 369546 Tel: +65 9181 4105",
+    "Telephone": "Tel: +65 9181 4105",
+    "Lat": 1.336047,
+    "Lng": 103.886073
+  },
+  {
+    "Name": "Bike Zone Connection",
+    "Address": "10 Sengkang Square,\n01-115, Singapore 544829 Tel: +65 6250 9798",
+    "Telephone": "Tel: +65 6250 9798",
+    "Lat": 1.391443,
+    "Lng": 103.8935928
+  },
+  {
+    "Name": "EverythingBikez",
+    "Address": "299 Joo Chiat Road Singapore 427550 Tel: +65 6348 9727",
+    "Telephone": "Tel: +65 6348 9727",
+    "Lat": 1.3095619,
+    "Lng": 103.902313
+  },
+  {
+    "Name": "Elite Bicycles Asia Pte Ltd",
+    "Address": "43 Kampong Bahru Road\nSingapore 169359 Tel: +65 6224 2578",
+    "Telephone": "Tel: +65 6224 2578",
+    "Lat": 1.276874,
+    "Lng": 103.836191
+  },
+  {
+    "Name": "Ave Avenue Pte Ltd",
+    "Address": "353 Sembawang Road\nSingapore 758358 Tel: +6562576678",
+    "Telephone": "Tel: +6562576678",
+    "Lat": 1.42606,
+    "Lng": 103.825739
+  },
+  {
+    "Name": "Long Fa Bicycle Shop",
+    "Address": "215 Ang Mo Kio Ave 1, Singapore 560215 Tel: +65 6554 4738",
+    "Telephone": "Tel: +65 6554 4738",
+    "Lat": 1.366631,
+    "Lng": 103.841498
+  },
+  {
+    "Name": "Bike X",
+    "Address": "51 Tampines Avenue 4,\n01-96/97, Our Tampines Hub,\nSingapore 529684 Tel: +65 6684 8846",
+    "Telephone": "Tel: +65 6684 8846",
+    "Lat": 1.353738,
+    "Lng": 103.940701
+  },
+  {
+    "Name": "Bike Technics Pte Ltd",
+    "Address": "782 Upper Bukit Timah Road,\nSingapore 678126 Tel: +6598441103",
+    "Telephone": "Tel: +6598441103",
+    "Lat": 1.372085,
+    "Lng": 103.763227
+  },
+  {
+    "Name": "Active Cycle",
+    "Address": "1 Kaki Bukit Ave 6, Singapore 417896 Tel: +65 9231 3156",
+    "Telephone": "Tel: +65 9231 3156",
+    "Lat": 1.341221,
+    "Lng": 103.914489
+  },
+  {
+    "Name": "Java Bikes",
+    "Address": "3005 Ubi Ave 3\n01-58\nSingapore 408861 Tel: +65 6988 2705",
+    "Telephone": "Tel: +65 6988 2705",
+    "Lat": 1.331139,
+    "Lng": 103.8924119
+  },
+  {
+    "Name": "Soon Watt & Co.",
+    "Address": "482 Changi Road\nSingapore 419895 Tel: +6564454755",
+    "Telephone": "Tel: +6564454755",
+    "Lat": 1.319307,
+    "Lng": 103.913458
+  },
+  {
+    "Name": "Kian Hong Cycle Pte Ltd @ Vertex",
+    "Address": "33 Ubi Avenue 3\n01-07, Vertex,\nSingapore 408868 Tel: +65 6509 4567",
+    "Telephone": "Tel: +65 6509 4567",
+    "Lat": 1.33295,
+    "Lng": 103.894131
+  },
+  {
+    "Name": "AK Cyclery",
+    "Address": "West Coast Road #01-559, block 517, Singapore 120517 Tel: +65 8288 9798",
+    "Telephone": "Tel: +65 8288 9798",
+    "Lat": 1.307477,
+    "Lng": 103.76011
+  },
+  {
+    "Name": "Scooter Hub - Clementi",
+    "Address": "354 Clementi Avenue 2,\n01-209, Singapore 120354 Tel: +6567740243",
+    "Telephone": "Tel: +6567740243",
+    "Lat": 1.313528,
+    "Lng": 103.770778
+  },
+  {
+    "Name": "Emmanuel Cycle",
+    "Address": "356 Hougang Avenue 7,\n01-783,\nSingapore 530356 Tel: +65 9297 3960",
+    "Telephone": "Tel: +65 9297 3960",
+    "Lat": 1.372568,
+    "Lng": 103.898837
+  },
+  {
+    "Name": "FootLoops",
+    "Address": "61 Ubi Road 1,\n01-21 Oxley Bizhub,\nSingapore 408727 Tel: +65 6384 0336 / +65 6384 6433",
+    "Telephone": "Tel: +65 6384 0336 / +65 6384 6433",
+    "Lat": 1.331864,
+    "Lng": 103.890539
+  },
+  {
+    "Name": "TEF Bikers Junction",
+    "Address": "1 Thomson Road,\n01-332\nSingapore 300001 Tel: +6562562928",
+    "Telephone": "Tel: +6562562928",
+    "Lat": 1.3253569,
+    "Lng": 103.842168
+  },
+  {
+    "Name": "Bikechanics",
+    "Address": "289 Tampines Street 22,\nSingapore 520289\n(Please call for Appointment) Tel: +65 9747 2898",
+    "Telephone": "Tel: +65 9747 2898",
+    "Lat": 1.34968,
+    "Lng": 103.955049
+  },
+  {
+    "Name": "BRU2",
+    "Address": "67 Frankel Ave\nSingapore 458194 Tel: 64436284",
+    "Telephone": "Tel: 64436284",
+    "Lat": 1.31554,
+    "Lng": 103.918823
+  },
+  {
+    "Name": "Tay Cycle",
+    "Address": "139 Tampines St 11\n01-40\nSingapore 521139 Tel: +6567877736",
+    "Telephone": "Tel: +6567877736",
+    "Lat": 1.346653,
+    "Lng": 103.944868
+  },
+  {
+    "Name": "Integrated Riding LLP",
+    "Address": "96 Koon Seng Road,\nSingapore 427035 Tel: +65 6346 0448",
+    "Telephone": "Tel: +65 6346 0448",
+    "Lat": 1.312111,
+    "Lng": 103.905157
+  },
+  {
+    "Name": "Ban Soon Bicycle Shop",
+    "Address": "11 Upper Boon Keng Road ,\n01-931\nSingapore 380011 Tel: +65 6748 9078",
+    "Telephone": "Tel: +65 6748 9078",
+    "Lat": 1.314321,
+    "Lng": 103.870795
+  },
+  {
+    "Name": "Urban Cycliste",
+    "Address": "762 Pasir Ris Street 71\nSingapore 510762\n(By Appointment only. Please call before visiting. Thank you!) Tel: +6596895269",
+    "Telephone": "Tel: +6596895269",
+    "Lat": 1.375884,
+    "Lng": 103.933653
+  },
+  {
+    "Name": "Performance Cycles",
+    "Address": "247 Tanjong Katong Road\nSingapore 437035\nTel: +65 6443 0901",
+    "Telephone": "Tel: +65 6443 0901",
+    "Lat": 1.308266,
+    "Lng": 103.895027
+  },
+  {
+    "Name": "Poh Cycle",
+    "Address": "475 Choa Chu Kang Ave 3\n01-14, Sunshine Place Mall\nSingapore 680475\nTel: +65 9180 7139",
+    "Telephone": "Tel: +65 9180 7139",
+    "Lat": 1.377746,
+    "Lng": 103.73862
+  },
+  {
+    "Name": "ReCycle",
+    "Address": "633 Veerasamy Road 01-108\nSingapore 200633 Tel: +65 6299 4568",
+    "Telephone": "Tel: +65 6299 4568",
+    "Lat": 1.305783,
+    "Lng": 103.8548519
+  },
+  {
+    "Name": "JW Bike",
+    "Address": "139 Tampines Street 11\n01-34, Singapore 521139 Tel: +65 6785 1225 / +65 9006 0757",
+    "Telephone": "Tel: +65 6785 1225 / +65 9006 0757",
+    "Lat": 1.346653,
+    "Lng": 103.944868
+  },
+  {
+    "Name": "Bike Avenue",
+    "Address": "6 Yishun industrial street 1, #04-09\nNorthview Bizhub\nSingapore 768090 Tel: +6563415068",
+    "Telephone": "Tel: +6563415068",
+    "Lat": 1.4366874,
+    "Lng": 103.8435841
+  },
+  {
+    "Name": "Kian Seng Heng Bicycle Trader",
+    "Address": "327 Hougang Ave 5\n01-158\nSingapore 530327 Tel: +65 6222 1848",
+    "Telephone": "Tel: +65 6222 1848",
+    "Lat": 1.368256,
+    "Lng": 103.8961549
+  },
+  {
+    "Name": "Bike Connect",
+    "Address": "23 Hoot Kiam Road\nSingapore 249405 Tel: +65 6836 5523",
+    "Telephone": "Tel: +65 6836 5523",
+    "Lat": 1.296459,
+    "Lng": 103.830084
+  },
+  {
+    "Name": "Woop+",
+    "Address": "Blk 9 Selegie Road,\n#01-26 Selegie House,\nSingapore 180009 Tel: +65 6466 8888",
+    "Telephone": "Tel: +65 6466 8888",
+    "Lat": 1.303476,
+    "Lng": 103.850154
+  },
+  {
+    "Name": "Bike Stop",
+    "Address": "237 Upper Thomson Road\nSingapore 574368 Tel: +65 6456 6256",
+    "Telephone": "Tel: +65 6456 6256",
+    "Lat": 1.352742,
+    "Lng": 103.834574
+  },
+  {
+    "Name": "The Cyclogy",
+    "Address": "54 Yio Chu Kang Road\nSingapore 545562 Tel: +6562895568",
+    "Telephone": "Tel: +6562895568",
+    "Lat": 1.3571709,
+    "Lng": 103.875718
+  },
+  {
+    "Name": "BRU",
+    "Address": "Block 9, Yishun Industrial Street 1\n01-77 Northspring BizHub\nSingapore 768163 Tel: +65-67173928 / +65-64436284",
+    "Telephone": "Tel: +65-67173928 / +65-64436284",
+    "Lat": 1.438486,
+    "Lng": 103.843409
+  },
+  {
+    "Name": "Willow Bike.Art.Cafe",
+    "Address": "456 Ang Mo Kio Avenue 10,\n01-1570,\nSingapore 560456 Tel: +6596739707",
+    "Telephone": "Tel: +6596739707",
+    "Lat": 1.367224,
+    "Lng": 103.858465
+  },
+  {
+    "Name": "Cheap John's Enterprise",
+    "Address": "598 Sembawang Road\nSingapore 758456 Tel: +6567537134",
+    "Telephone": "Tel: +6567537134",
+    "Lat": 1.4410019,
+    "Lng": 103.824862
+  },
+  {
+    "Name": "bicyclesg.com",
+    "Address": "Blk 263 Serangoon Central Drive\n#01-57\nSingapore 550263 Tel: +6592704508",
+    "Telephone": "Tel: +6592704508",
+    "Lat": 1.354197,
+    "Lng": 103.87199
+  },
+  {
+    "Name": "Crib Sport Wizzkids",
+    "Address": "59 Anchorvale Road,\n01-03, Anchorvale Community Centre,\nSingapore 544965 Tel: +65 9116 8689",
+    "Telephone": "Tel: +65 9116 8689",
+    "Lat": 1.397034,
+    "Lng": 103.886688
+  },
+  {
+    "Name": "Pro Cycle Bikes",
+    "Address": "Blk 11 Jalan Bukit Merah, #01-4446 Singapore 150011 Tel: +65 9072 3533",
+    "Telephone": "Tel: +65 9072 3533",
+    "Lat": 1.286601,
+    "Lng": 103.808908
+  },
+  {
+    "Name": "Seng Chu Hin Trading",
+    "Address": "272 Tampines Street 22,\n01-22, Singapore 520272 Tel: +6562609121",
+    "Telephone": "Tel: +6562609121",
+    "Lat": 1.349125,
+    "Lng": 103.950233
+  }
+]
