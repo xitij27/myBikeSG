@@ -471,19 +471,23 @@ function Navbar({ setOverall, setRepairVis, setRackVis }) {
     return (
         <div className='nav-bar'>
             <button 
-            className='btn-home'
-            onClick={setOverall}>Home</button> 
+            className='btn-nav'
+            onClick={setOverall}>Home</button>
+            <button className='btn-pad'></button>
             <button 
-            className='btn-route'
-            onClick={Home}>Route</button> 
+            className='btn-nav'
+            onClick={Home}>Route</button>
+            <button className='btn-pad'></button>
             <button 
-            className='btn-repair'
+            className='btn-nav'
             onClick={setRepairVis}>Repair Shops</button> 
+            <button className='btn-pad'></button>
             <button 
-            className='btn-racks'
+            className='btn-nav'
             onClick={setRackVis}>Racks</button> 
+            <button className='btn-pad'></button>
             <button 
-            className='btn-add'
+            className='btn-nav'
             onClick={Home}>Add Racks</button>
             
         </div>
