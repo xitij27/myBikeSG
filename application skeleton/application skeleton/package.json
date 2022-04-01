@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "index.html",
+    "build_documentation": "npx jsdoc"
+  },
+  "author": "LethalCoder293",
+  "license": "ISC",
+  "dependencies": {
+    "jsdoc": "^3.6.10",
+    "prompt-sync": "^4.2.0"
+  }
+}
