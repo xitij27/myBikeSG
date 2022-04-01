@@ -1,98 +1,20 @@
-.btn-home {
-    position: absolute;
-    width: 232px;
+.nav-bar {
+  position: absolute;
+  top: 20px;
+  left: 350px;
+  width: 100%;
+}
+
+.btn-pad {
+  position: relative;
+  width: 3%;
+  opacity: 0;
+}
+
+.btn-nav {
+    position: relative;
+    width: 10%;
     height: 40px;
-    left: 359px;
-    top: 20px;
-  
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 29px;
-    align-items: center;
-    text-align: center;
-  
-    color: #000000;
-    background: #F5F5F5;
-    opacity: 0.85;
-    border-radius: 40px;
-    border-width: 0.5px;
-  }
-  
-  .btn-route {
-    position: absolute;
-    width: 232px;
-    height: 40px;
-    left: 641px;
-    top: 20px;
-  
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 29px;
-    align-items: center;
-    text-align: center;
-  
-    color: #000000;
-    background: #F5F5F5;
-    opacity: 0.85;
-    border-radius: 40px;
-    border-width: 0.5px;
-  }
-  
-  .btn-repair {
-    position: absolute;
-    width: 232px;
-    height: 40px;
-    left: 923px;
-    top: 20px;
-  
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 29px;
-    align-items: center;
-    text-align: center;
-  
-    color: #000000;
-    background: #F5F5F5;
-    opacity: 0.85;
-    border-radius: 40px;
-    border-width: 0.5px;
-  }
-  
-  .btn-racks {
-    position: absolute;
-    width: 232px;
-    height: 40px;
-    left: 1205px;
-    top: 20px;
-  
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 29px;
-    align-items: center;
-    text-align: center;
-  
-    color: #000000;
-    background: #F5F5F5;
-    opacity: 0.85;
-    border-radius: 40px;
-    border-width: 0.5px;
-  }
-  
-  .btn-add {
-    position: absolute;
-    width: 232px;
-    height: 40px;
-    left: 1487px;
-    top: 20px;
-  
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
