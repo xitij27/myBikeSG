@@ -344,7 +344,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (!start) {
+        if (!start || (start.lat == 0 && start.lng == 0)) {
             alert("Please enter starting location")
             return
         }
@@ -470,6 +470,7 @@ function Navbar({ setOverall, setRepairVis, setRackVis }) {
 
     return (
         <div className='nav-bar'>
+            <button className='nav-pad'></button>
             <button 
             className='btn-nav'
             onClick={setOverall}>Home</button>

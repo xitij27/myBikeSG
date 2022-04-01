@@ -1,8 +1,12 @@
 .nav-bar {
   position: absolute;
   top: 20px;
-  left: 350px;
   width: 100%;
+}
+.nav-pad {
+  position: relative;
+  width: 25%;
+  opacity: 0;
 }
 
 .btn-pad {
