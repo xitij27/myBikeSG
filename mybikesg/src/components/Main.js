@@ -56,7 +56,7 @@ for (const repair_details of bike_repairs_json) {
     repair_shop_locs.push({ repair_details, "vis": true });
 }
 
-export function Main({ }) {
+export function Main() {
     // misc stuff
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -207,7 +207,27 @@ export function Main({ }) {
     if (loadError) return "Error loading map"
     if (!isLoaded) return "Loading Map"
 
+    // route planning
+    const directionsService = new window.google.maps.DirectionsService();
+    const directionsRenderer = new window.google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(mapRef);
+    const origin = { lat: 1.337078, lng: 103.7547249 };
+    const destination = { lat: 1.269789, lng: 103.8149059 };
 
+    directionsService.route(
+        {
+            origin: origin,
+            destination: destination,
+            travelMode: window.google.maps.TravelMode.DRIVING
+        },
+        (result, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+            directionsRenderer.setDirections(result);
+            } else {
+            console.error(`error fetching directions ${result}`);
+            }
+        }
+    );
 
     return <div>
         <GoogleMap
@@ -344,7 +364,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (!start || (start.lat == 0 && start.lng == 0)) {
+        if (!start || (start.lat === 0 && start.lng === 0)) {
             alert("Please enter starting location")
             return
         }
