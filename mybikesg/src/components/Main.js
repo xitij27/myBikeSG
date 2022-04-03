@@ -557,6 +557,8 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
     }
     const [modalShow, setModalShow] = React.useState(false);
 
+    const [modalShow, setModalShow] = React.useState(false);
+
     return (
         <div className='nav-bar'>
             <button className='nav-pad'></button>
@@ -576,11 +578,12 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
             className='btn-nav'
             onClick={setRackVis}>Racks</button> 
             <button className='btn-pad'></button>
+            <button 
+            className='btn-nav'
+            onClick={Home}>Add Racks</button>
             <Addrack modalShow = {modalShow} 
             setModalShow = {setModalShow}
             ></Addrack>
-
-            
         </div>
     )
 }
