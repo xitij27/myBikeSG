@@ -14,9 +14,9 @@ function Addrack({modalShow, setModalShow}) {
     } 
     return (
         <>
-            <Button 
+            <button 
             className='btn-nav'
-            onClick={handleShow}>Add Racks</Button> 
+            onClick={handleShow}>Add Racks</button> 
             <Modal
                 dialogClassName='modal'
                 show={modalShow}
