@@ -30,3 +30,4 @@ class Request  // Abstract Class
         this.initialLocation = initialLocation
     }
 }
+module.exports = Request;

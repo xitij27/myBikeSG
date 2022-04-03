@@ -8,7 +8,7 @@ import * as GrIcons from "react-icons/gr";
 function Navbar() {
 
     const [cloud, setClouds] = useState(false)
-       
+    const [modalShow, setModalShow] = React.useState(false);
     const showClouds = () => {
         setClouds(!cloud)
     }
@@ -41,6 +41,9 @@ function Navbar() {
                 </Link>
             </div>
             </Router>
+            <Addrack modalShow = {modalShow} 
+            setModalShow = {setModalShow}
+            ></Addrack>
             
 
         </>

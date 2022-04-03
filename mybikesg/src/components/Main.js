@@ -19,6 +19,8 @@ import * as FaIcons from "react-icons/fa";
 import * as GrIcons from "react-icons/gr";
 import MapStyle from './MapStyle'
 import "./Drawer.css";
+import "./Addrack.css";
+import Addrack from './Addrack.js';
 import racks_lta_json from "../data/lta-bicycle-rack-geojson.json";
 import racks_user_json from "../data/users-bicycle-racks.json";
 import bike_repairs_json from "../data/bike_repair.json";
@@ -553,6 +555,7 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
     function Home(){
         alert("function not done")
     }
+    const [modalShow, setModalShow] = React.useState(false);
 
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -581,7 +584,6 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
             <Addrack modalShow = {modalShow} 
             setModalShow = {setModalShow}
             ></Addrack>
-            
         </div>
     )
 }
