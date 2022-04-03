@@ -1,12 +1,10 @@
+const Account = require('./Account.js');
 class Verifier_Acc extends Account
 {
     constructor(emailId, DOB, Name, racksVerified = [])
     {
-        this.emailId = emailId;
-        this.DOB = DOB;
-        this.Name = Name;
-        this.racksVerified = racksVerified;
         super(emailId,DOB,Name);
+        this.racksVerified = racksVerified;
     }
     
     addRack(rackNo) 
@@ -29,3 +27,4 @@ class Verifier_Acc extends Account
           });
     }
 }
+module.exports = Verifier_Acc;

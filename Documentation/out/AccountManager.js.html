@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: AccountManager.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: AccountManager.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const ps = require('prompt-sync');
+const input = ps();
+const Account = require('./Account.js');
+const OTP = require('./OTP.js');
+const Verifier_Acc = require('./VerfierAcc.js');
+/**
+ * @class 
+ * @classdesc Control class containing all methods related to managing accounts.
+ */
+class AccMgr 
+{
+    /**
+     * accs hashmap stores the Account objects that are created.
+     * @static
+     * @private
+     */
+    static accs = new Map();
+    /**
+     * OTPs hashmap stores the OTP objects that are created.
+     * @static
+     * @private
+     */
+    static OTPs = new Map();
+    constructor()
+    {
+    }
+    /**
+     * Checks whether login details are correct.
+     * @param {string} email 
+     * @param {string} password 
+     * @static
+     * @returns {number} 1 is password is correct, 2 if account is disabled, 0 if password is incorrect,-1 if account does not exist.
+     */
+    static Login(email, password) {
+        if (AccMgr.accs.has(email))
+            return  AccMgr.accs.get(email).checkPassword(password);
+        else
+            return -1;
+    }
+    /**
+     * Sends an OTP to user, checks whether OTP is valid, then update password. Returns false of OTP is incorrect.
+     * @param {string} email 
+     * @param {string} otp 
+     * @param {string} password 
+     * @static
+     * @returns {boolean} 
+     */
+    static resetPassword(email, otp, password) {
+        if (!(AccMgr.OTPs.get(email).checkOTP(otp))) {
+            return false;
+        } else {
+            AccMgr.accs.get(email).updatePassword(password);
+            AccMgr.OTPs.delete(email);
+            // Above code needs to do tested and may break
+            return true;
+        }
+    }
+    /**
+     * Sends an email containing the generated OTP to the user. Returns a promise.
+     * @param {string} email 
+     * @param {string} otp 
+     * @static
+     * @async
+     * @returns {Promise} 
+     */
+    static async sendEmail(email,otp)
+   {
+      var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+    service:'gmail',
+    auth: {
+     user: 'nodejs049@gmail.com',
+     pass: 'nodejs123'
+    }
+    });
+
+    var mailOptions = {
+    from: 'nodejs049@gmail.com',
+    to: email,
+    subject: 'your otp',
+    text: otp
+    };
+    return new Promise(function (resolve, reject){
+        transporter.sendMail(mailOptions, (err, info) => {
+           if (err) {
+              console.log("error: ", err);
+              reject(err);
+           } else {
+              console.log(`Mail sent successfully!`);
+              resolve(info);
+           }
+        });
+     });
+   }
+   /**
+    * Generates a random 4 digit OTP. Makes an OTP object and stores it in OTPs hashmap. Returns the OTP.
+    * @param {string} email 
+    * @static
+    * @returns {string}
+    */
+   static generateOTP(email){    
+    var digits='0123456789';
+    let otp='';
+    for (let i = 0; i &lt; 4; i++ ) 
+    {
+     otp += digits[Math.floor(Math.random() * 10)];
+    }
+    AccMgr.OTPs.set(email, new OTP(email,otp));
+    return otp;
+    }
+    /**
+     * Creates an account for a User.
+     * @static
+     * @param {string} email 
+     * @param {string} password 
+     * @param {string} DOB Date of Birth
+     * @param {string} Name Account Username
+     * @param {string} otp 
+     */
+    static signUp(email, password, DOB, Name, otp) {
+        let otp1 = AccMgr.OTPs.get(email);
+        let chk = otp1.checkOTP(otp);
+        if (chk == true) {
+            AccMgr.accs.set(email, new Account(email, DOB, Name));
+            AccMgr.accs.get(email).updatePassword(password);
+        }
+    }
+    /**
+     * Creates a special account for a Verifier.
+     * @static 
+     * @param {string} email 
+     * @param {string} password 
+     * @param {string} DOB 
+     * @param {string} Name 
+     * @param {string} otp 
+     */
+
+    static signUp_V(email, password, DOB, Name, otp) {
+        let otp1 = AccMgr.OTPs.get(email);
+        let chk = otp1.checkOTP(otp);
+        if (chk == true) {
+            AccMgr.accs.set(email, new Verifier_Acc(email, DOB, Name));
+            AccMgr.accs.get(email).updatePassword(password);
+        }
+    }
+}
+
+
+async function main()
+{
+    let email = input("Enter your email : "); 
+    await AccMgr.sendEmail(email,AccMgr.generateOTP(email));
+    let password = input("Enter your password : ");
+    let dob = input("Enter your Date Of Birth : ");
+    let name = input("Enter your name : ");
+    let otp_user = input("Enter your otp : ");
+    AccMgr.signUp_V(email,password,dob,name,otp_user);
+    console.log("result is " + AccMgr.Login(email,password));
+}
+async function main2(email)
+{
+    console.log("Hi main 2 here");
+    await AccMgr.sendEmail(email, AccMgr.generateOTP(email));
+}
+//main2("HARSHRAO001@e.ntu.edu.sg");
+module.exports = AccMgr;
+module.exports = main2;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AccMgr.html">AccMgr</a></li><li><a href="Account.html">Account</a></li><li><a href="AddRacks.html">AddRacks</a></li><li><a href="FindRacks.html">FindRacks</a></li><li><a href="FindRepairShop.html">FindRepairShop</a></li><li><a href="FindRoute.html">FindRoute</a></li><li><a href="OTP.html">OTP</a></li><li><a href="ReqMgr.html">ReqMgr</a></li><li><a href="Request.html">Request</a></li><li><a href="Verifier_Acc.html">Verifier_Acc</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Apr 01 2022 01:12:56 GMT+0800 (Singapore Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

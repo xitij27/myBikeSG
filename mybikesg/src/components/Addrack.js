@@ -45,6 +45,4 @@ function Addrack({modalShow, setModalShow}) {
     )
 }
 
-
-
-  export default Addrack
+export default Addrack

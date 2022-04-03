@@ -1,14 +1,8 @@
 class OTP
 {
-   constructor(email)
+   constructor(email,otp)
    {
        this.email=email;
-       var digits='0123456789';
-       let otp='';
-       for (let i = 0; i < 4; i++ ) 
-       {
-        otp += digits[Math.floor(Math.random() * 10)];
-       }
        this.otp=otp;
        this.create_time=Date.now();
    }
@@ -31,3 +25,4 @@ class OTP
     return true;
    }
 }
+module.exports = OTP;
