@@ -33,25 +33,3 @@
     border-radius: 40px;
     border-width: 0.5px;
   }
-
-  .cloud {
-    height: 80px;
-    position: absolute;
-    z-index: 990;
-    justify-content: start;
-    top: 0px;
-    right: 0px;
-    align-items: center;
-  }
-
-.nav-cloud {
-  color: #808080;
-  position: absolute;
-  z-index: 1;
-  top: 20px;
-  right: 60px;
-  height: 30px;
-  width: 30px;
-  opacity: 0.85;
-  background: none;
-}
