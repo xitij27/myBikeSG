@@ -1,3 +1,4 @@
+/* global google */
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Wrapper } from "@googlemaps/react-wrapper";
@@ -58,7 +59,12 @@ for (const repair_details of bike_repairs_json) {
     repair_shop_locs.push({ repair_details, "vis": true });
 }
 
-export function Main({ }) {
+var directionsService
+var directionsRenderer
+var nearest_rack_bool = false;
+var nearest_rack_loc = {lat: null, lng: null};
+
+export function Main() {
     // misc stuff
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -72,6 +78,7 @@ export function Main({ }) {
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
+        
     }, []);
 
     const panTo = React.useCallback(({ lat, lng }) => {
@@ -87,7 +94,7 @@ export function Main({ }) {
     const [visRepairs, toggleRepairs] = useState(true)
     const setRepairVis = () => toggleRepairs(!visRepairs)
     const [visRoute, toggleRoute] = useState(true)
-    const setRouteVis = () => toggleRoute(!visRoute)
+    const setRouteVis = () => {toggleRoute(!visRoute); check_start_dest()}
 
     // only remove ever market if all are shown, otherwise show all markers
     const plot_all = () => {
@@ -113,11 +120,13 @@ export function Main({ }) {
     // start and dest locations, {lat, lng}
     const [start, setStart] = useState({ lat: 0, lng: 0 });
     const [dest, setDest] = useState({ lat: 0, lng: 0 });
+    
 
     const plot_racks = () => {
         if (visRacks && start && (start.lat !== 0 && start.lng !== 0)) {
             const range = 0.5 // 500m
-            var marker_lat, marker_lng, start_kx, start_dx, start_dy, dest_kx, dest_dx, dest_dy;
+            var closest_marker_dist = range;
+            var marker_lat, marker_lng, start_kx, start_dx, start_dy, dest_kx, dest_dx, dest_dy, marker_distance_start, marker_distance_dest;
             // for lta racks
             for (const rack_lta_loc of racks_lta_locs) {
                 // this chunk is the logic for showing only markers in radius of start and dest
@@ -126,26 +135,39 @@ export function Main({ }) {
                 start_kx = Math.cos(Math.PI * start.lat / 180) * 111;
                 start_dx = Math.abs(start.lng - marker_lng) * start_kx;
                 start_dy = Math.abs(start.lat - marker_lat) * 111;
-
+                marker_distance_start = Math.sqrt(start_dx * start_dx + start_dy * start_dy);
                 // if dest is given
                 if (dest && (dest.lat !== 0 && dest.lng !== 0)) {
                     dest_kx = Math.cos(Math.PI * dest.lat / 180) * 111;
                     dest_dx = Math.abs(dest.lng - marker_lng) * dest_kx;
                     dest_dy = Math.abs(dest.lat - marker_lat) * 111;
+                    
                     // if marker distance > range, make it disappear
-                    if ((Math.sqrt(start_dx * start_dx + start_dy * start_dy) > range) && (Math.sqrt(dest_dx * dest_dx + dest_dy * dest_dy) > range)) {
+                    marker_distance_dest = Math.sqrt(dest_dx * dest_dx + dest_dy * dest_dy)
+                    
+                    if ((marker_distance_start > range) && (marker_distance_dest > range)) {
                         rack_lta_loc.vis = false;
-                    } else rack_lta_loc.vis = true;
+                    } else {
+                        rack_lta_loc.vis = true;
+                        // if nearest rack is set to destination
+                        if (nearest_rack_bool && marker_distance_dest < closest_marker_dist) {
+                            // console.log("setting nearest dest to rack loc")
+                            nearest_rack_loc.lat = rack_lta_loc.rack_details.geometry.coordinates[1]
+                            nearest_rack_loc.lng = rack_lta_loc.rack_details.geometry.coordinates[0]
+                            closest_marker_dist = marker_distance_dest
+                        }
+                    }
                 }
                 // if only start is given
                 else {
                     // if marker distance > range, make it disappear
-                    if (Math.sqrt(start_dx * start_dx + start_dy * start_dy) > range) {
+                    if ( marker_distance_start > range) {
                         rack_lta_loc.vis = false;
                     } else rack_lta_loc.vis = true;
                 }
             }
-
+            
+            
             // for user added racks
             for (const rack_user_loc of racks_user_locs) {
                 
@@ -154,6 +176,7 @@ export function Main({ }) {
                 start_kx = Math.cos(Math.PI * start.lat / 180) * 111;
                 start_dx = Math.abs(start.lng - marker_lng) * start_kx;
                 start_dy = Math.abs(start.lat - marker_lat) * 111;
+                marker_distance_start = Math.sqrt(start_dx * start_dx + start_dy * start_dy);
 
                 // if dest is given
                 if (dest && (dest.lat !== 0 && dest.lng !== 0)) {
@@ -161,14 +184,24 @@ export function Main({ }) {
                     dest_dx = Math.abs(dest.lng - marker_lng) * dest_kx;
                     dest_dy = Math.abs(dest.lat - marker_lat) * 111;
                     // if marker distance > range, make it disappear
-                    if ((Math.sqrt(start_dx * start_dx + start_dy * start_dy) > range) && (Math.sqrt(dest_dx * dest_dx + dest_dy * dest_dy) > range)) {
+                    marker_distance_dest = Math.sqrt(dest_dx * dest_dx + dest_dy * dest_dy)
+                    if (marker_distance_start > range && (marker_distance_dest > range)) {
                         rack_user_loc.vis = false;
-                    } else rack_user_loc.vis = true;
+                    } else {
+                        rack_user_loc.vis = true;
+                        // if nearest rack is set to destination
+                        if (nearest_rack_bool && marker_distance_dest < closest_marker_dist) {
+                            // console.log("setting nearest dest to rack loc")
+                            nearest_rack_loc.lat = rack_user_loc.rack_details.Lat
+                            nearest_rack_loc.lng = rack_user_loc.rack_details.Lng
+                            closest_marker_dist = marker_distance_dest
+                        }
+                    }
                 }
                 // if only start is given
                 else {
                     // if marker distance > range, make it disappear
-                    if (Math.sqrt(start_dx * start_dx + start_dy * start_dy) > range) {
+                    if (marker_distance_start > range) {
                         rack_user_loc.vis = false;
                     } else rack_user_loc.vis = true;
                 }
@@ -187,29 +220,74 @@ export function Main({ }) {
         }
     }
 
+    const check_start_dest = () => {
+        if ((start.lat === 0 && start.lng === 0) || (dest.lat === 0 && dest.lng === 0)) {
+            alert("Enter starting location and destination using the drawer on the right.");
+        } else {
+            if (!visRoute && directionsRenderer.getMap() != null) {
+                directionsRenderer.setMap(null)
+            } else directionsRenderer.setMap(mapRef.current);
+        }
+    }
+
+
     plot_repair_shops()
     plot_racks();
 
     // helper functions for misc stuff
     const send_loc = (locs) => {
-        console.log(locs)
+        // console.log(locs)
+        nearest_rack_bool = locs.rack
         setDest(locs.dest);
     }
 
     const markStart = React.useCallback(({ lat, lng }) => {
-        console.log("marking start")
+        // console.log("marking start")
         setStart({ lat, lng });
     }, []);
 
     const markDest = React.useCallback(({ lat, lng }) => {
-        console.log("marking dest")
+        // console.log("marking dest")
         setDest({ lat, lng });
     }, []);
 
     if (loadError) return "Error loading map"
     if (!isLoaded) return "Loading Map"
 
+    if (!directionsService && !directionsRenderer) {
+        // console.log("creating new service and renderer")
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            suppressMarkers: true
+        });
+    }
 
+    // route planning
+    
+    directionsRenderer.setMap(mapRef.current);
+
+    const origin = { lat: start.lat, lng: start.lng };
+    var destination
+    if (nearest_rack_bool && nearest_rack_loc.lat != null && nearest_rack_loc.lng != null) {
+        destination = {lat: nearest_rack_loc.lat, lng: nearest_rack_loc.lng}
+    } else destination = { lat: dest.lat, lng: dest.lng };
+
+    if (origin.lat !== 0 && origin.lng !== 0 && destination.lat !== 0 && destination.lng !== 0) {
+        directionsService.route(
+            {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode.BICYCLING
+            },
+            (result, status) => {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(result);
+                } else {
+                    console.error(`error fetching directions ${result}`);
+                }
+            }
+        );
+    }
 
     return <div>
         <GoogleMap
@@ -322,13 +400,19 @@ export function Main({ }) {
 
         </GoogleMap>
         <Router>
-            <Drawer onSend={send_loc} panTo={panTo} markStart={markStart} markDest={markDest} />
+            <Drawer 
+                onSend={send_loc}
+                panTo={panTo} 
+                markStart={markStart} 
+                markDest={markDest}
+            />
         </Router>
         <Router>
             <Navbar 
                 setOverall={setOverall} 
                 setRepairVis={setRepairVis} 
-                setRackVis={setRackVis}/>
+                setRackVis={setRackVis}
+                setRouteVis={setRouteVis}/>
         </Router>
         
 
@@ -346,7 +430,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (!start || (start.lat == 0 && start.lng == 0)) {
+        if (!start || (start.lat === 0 && start.lng === 0)) {
             alert("Please enter starting location")
             return
         }
@@ -377,6 +461,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
                                     setInput={({ lat, lng }) => setStart({ lat, lng })}
                                     panTo={panTo}
                                     markMap={markStart}
+                                    
                                 />
                             </div>
                             <div className="form-control">
@@ -386,6 +471,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
                                     setInput={({ lat, lng }) => setDest({ lat, lng })}
                                     panTo={panTo}
                                     markMap={markDest}
+                                
                                 />
                             </div>
                             <div className="form-control form-control-check">
@@ -464,7 +550,7 @@ function Search({ placeholder, setInput, panTo, markMap }) {
     );
 }
 
-function Navbar({ setOverall, setRepairVis, setRackVis }) {
+function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
 
     function Home(){
         alert("function not done")
@@ -480,7 +566,7 @@ function Navbar({ setOverall, setRepairVis, setRackVis }) {
             <button className='btn-pad'></button>
             <button 
             className='btn-nav'
-            onClick={Home}>Route</button>
+            onClick={setRouteVis}>Route</button>
             <button className='btn-pad'></button>
             <button 
             className='btn-nav'
