@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { GoogleMap, Marker, InfoWindow, useLoadScript } from "@react-google-maps/api";
+import { Modal, Button } from 'react-bootstrap'
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -20,7 +21,7 @@ import * as GrIcons from "react-icons/gr";
 import MapStyle from './MapStyle'
 import "./Drawer.css";
 import "./Addrack.css";
-import Addrack from './Addrack.js';
+import {Addrack} from './Addrack.js';
 import racks_lta_json from "../data/lta-bicycle-rack-geojson.json";
 import racks_user_json from "../data/users-bicycle-racks.json";
 import bike_repairs_json from "../data/bike_repair.json";
@@ -101,12 +102,11 @@ export function Main() {
         if (visRacks && visRepairs && visRoute) {
             setRackVis()
             setRepairVis()
-            setRouteVis()
         }
         // if any is set to false, we set to true and plot on map
         if (!visRacks) setRackVis()
         if (!visRepairs) setRepairVis()
-        if (!visRoute) setRouteVis();
+
     }
 
     const plot_repair_shops = () => {
@@ -382,6 +382,7 @@ export function Main() {
                 <div>
                     <b>User Added Rack</b>
                     <p>Verified: {selectedUserRack.rack_details.Verified? "yes" : "no"}</p>
+                    <p>Added by user: {selectedUserRack.rack_details.user_id}</p>
                 </div>
             </InfoWindow>) : null}
 
@@ -525,7 +526,6 @@ function Search({ placeholder, setInput, panTo, markMap }) {
                     const results = await getGeocode({ address });
                     const { lat, lng } = await getLatLng(results[0]);
                     console.log(placeholder, { lat, lng });
-                    // console.log(",\n\"Lat\":" + lat + ",\n\"Lng\":" + lng);
                     setInput({ lat, lng })
                     markMap({ lat, lng })
                     panTo({ lat, lng })
@@ -561,26 +561,33 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
         <div className='nav-bar'>
             <button className='nav-pad'></button>
             <button 
-            className='btn-nav'
-            onClick={setOverall}>Home</button>
+                className='btn-nav'
+                onClick={setOverall}>
+                    Home
+            </button>
             <button className='btn-pad'></button>
             <button 
-            className='btn-nav'
-            onClick={setRouteVis}>Route</button>
+                className='btn-nav'
+                onClick={setRouteVis}>
+                    Route
+            </button>
             <button className='btn-pad'></button>
             <button 
-            className='btn-nav'
-            onClick={setRepairVis}>Repair Shops</button> 
+                className='btn-nav'
+                onClick={setRepairVis}>
+                    Repair Shops
+            </button> 
             <button className='btn-pad'></button>
             <button 
-            className='btn-nav'
-            onClick={setRackVis}>Racks</button> 
+                className='btn-nav'
+                onClick={setRackVis}>
+                    Racks
+            </button> 
             <button className='btn-pad'></button>
-            {/* <button 
-            className='btn-nav'
-            onClick={Home}>Add Racks</button> */}
-            <Addrack modalShow = {modalShow} 
-            setModalShow = {setModalShow}
+    
+            <Addrack 
+                modalShow = {modalShow} 
+                setModalShow = {setModalShow}
             ></Addrack>
         </div>
     )
