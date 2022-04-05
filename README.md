@@ -1,5 +1,29 @@
 # myBikeSG
 
+## API Calls (How to access backend from frontend)
+### Login
+POST http://localhost:3000/api/login (For now)  
+Body = {  
+	"email": "<email>",  
+	"password" : "<password>"  
+}  
+Returns true if password is correct and false if incorrect. Can also return Database Error.  
+  
+### SignUp  
+POST http://localhost:3000/api/signUp (For now)  
+Body = {  
+	"email": ,    
+	"password" : ,  
+	"otp": ,  
+	"dob": ,  
+	"name":   
+}  
+Returns "Email already in use", "true", "false", and "Database Error".  
+Note: Call sendEmail before signUp to send OTP else we get an error 500  
+  
+### sendOTP
+GET http://localhost:3000/api/sendOTP/:email  
+Returns SENT:   
 ## Note (darryl)
 ### DO NOT DO `npm install react` I broke my version doing that 💀
 ^ idk if it's still the same after I fixed some stuff
