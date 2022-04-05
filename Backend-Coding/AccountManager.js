@@ -3,6 +3,7 @@ const input = ps();
 const Account = require('./Account.js');
 const OTP = require('./OTP.js');
 const Verifier_Acc = require('./VerfierAcc.js');
+
 class AccMgr 
 {
     static accs = new Map();
@@ -36,33 +37,33 @@ class AccMgr
         }
     }
     static async sendEmail(email,otp)
-   {
-      var nodemailer = require('nodemailer');
-    var transporter = nodemailer.createTransport({
-    service:'gmail',
-    auth: {
-     user: 'nodejs049@gmail.com',
-     pass: 'nodejs123'
-    }
-    });
-
-    var mailOptions = {
-    from: 'nodejs049@gmail.com',
-    to: email,
-    subject: 'your otp',
-    text: otp
-    };
-    return new Promise(function (resolve, reject){
-        transporter.sendMail(mailOptions, (err, info) => {
-           if (err) {
-              console.log("error: ", err);
-              reject(err);
-           } else {
-              console.log(`Mail sent successfully!`);
-              resolve(info);
-           }
+    {
+        var nodemailer = require('nodemailer');
+        var transporter = nodemailer.createTransport({
+        service:'gmail',
+        auth: {
+        user: 'nodejs049@gmail.com',
+        pass: 'nodejs123'
+        }
         });
-     });
+
+        var mailOptions = {
+        from: 'nodejs049@gmail.com',
+        to: email,
+        subject: 'your otp',
+        text: otp
+        };
+        return new Promise(function (resolve, reject){
+            transporter.sendMail(mailOptions, (err, info) => {
+             if (err) {
+                console.log("error: ", err);
+                reject(err);
+            } else {
+                 console.log(`Mail sent successfully!`);
+                resolve(info);
+             }
+            });
+        });
    }
 
 
@@ -77,14 +78,42 @@ class AccMgr
     return otp;
     }
     
+    /*static async accInMongoDB(email)
+    {
+        return new Promise((resolve, reject) => {
+            accountDB2.find({
+                email: email
+                })
+                .then((result) => {
+                    console.log('Found: ', result);
+                    if(result.length >= 1){
+                        console.log("Email "+ email + " found in MongoDB");    
+                        resolve(true);
+                    }
+                    else{
+                        console.log("Email "+ email + " not found in MongoDB");
+                        resolve(false);
+                    }
+                    // res.send(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    reject(err);
+                }
+            );
+        });
+    }*/
 
     static signUp(email, password, DOB, Name, otp) {
+        // Just checks if OTP is correct and ends
         let otp1 = AccMgr.OTPs.get(email);
-        let chk = otp1.checkOTP(otp);
+        let chk = otp1.checkOTP(otp);    
         if (chk == true) {
             AccMgr.accs.set(email, new Account(email, DOB, Name));
             AccMgr.accs.get(email).updatePassword(password);
+            return true;
         }
+        return false;          
     }
 
     static signUp_V(email, password, DOB, Name, otp) {
@@ -93,12 +122,14 @@ class AccMgr
         if (chk == true) {
             AccMgr.accs.set(email, new Verifier_Acc(email, DOB, Name));
             AccMgr.accs.get(email).updatePassword(password);
+            return true;
         }
+        return false;
     }
 }
 
 
-async function main()
+/*async function main()
 {
     let email = input("Enter your email : "); 
     await AccMgr.sendEmail(email,AccMgr.generateOTP(email));
@@ -108,12 +139,15 @@ async function main()
     let otp_user = input("Enter your otp : ");
     AccMgr.signUp_V(email,password,dob,name,otp_user);
     console.log("result is " + AccMgr.Login(email,password));
-}
+}*/
 async function main2(email)
 {
     console.log("Hi main 2 here");
     await AccMgr.sendEmail(email, AccMgr.generateOTP(email));
 }
-//main2("HARSHRAO001@e.ntu.edu.sg");
-module.exports = AccMgr;
-module.exports = main2;
+// module.exports = AccMgr;
+// module.exports = main2;
+module.exports = {
+    thing1: AccMgr,
+    thing2: main2,
+};
