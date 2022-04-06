@@ -33,9 +33,6 @@ Note: Call sendOTP before resetPassword to send OTP else we get an error 500
 ### sendOTP
 GET http://localhost:3000/api/sendOTP/:email  
 Returns SENT:   
-## Note (darryl)
-### DO NOT DO `npm install react` I broke my version doing that 💀
-^ idk if it's still the same after I fixed some stuff
 
 
 App is inside `/mybikesg`, change directory to `/mybikesg` then run `npm start` to start the app in your local host
