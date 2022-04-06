@@ -34,7 +34,36 @@ Note: Call sendOTP before resetPassword to send OTP else we get an error 500
 GET http://localhost:3000/api/sendOTP/:email  
 Returns SENT:   
 
-
+### Add Repair Shops
+POST http://localhost:3000/api/addRepairShops
+Body = {  
+	"shop_id": 1,  
+	"contact": "scared2compile@gmail.com",  
+	"lat": 1.3476840889006585,   
+	"long": 103.68160813919555,  
+	"name": "Item exchange try get a bike part lol!"  
+}  
+Returns "Already in Database", "true", "false", and "Database Error".  
+	
+### Repair Shops
+GET http://localhost:3000/api/repairShops  
+Returns a json file with all the repair shops in the database.  
+	
+### Add Racks
+POST http://localhost:3000/api/addRacks
+Body = {  
+	"rack_id": 1,  
+	"user_email": "scared2compile@gmail.com",  
+	"lat": 1.3476840889006585,   
+	"long": 103.68160813919555,  
+	"verified": "true"  
+}  
+Returns "Already in Database", "true", "false", and "Database Error".  
+	
+### Racks
+GET http://localhost:3000/api/bikeRacks  
+Returns a json file with all the bike racks in the database.  
+	
 App is inside `/mybikesg`, change directory to `/mybikesg` then run `npm start` to start the app in your local host
 
 Get Google Maps API key following https://developers.google.com/maps/documentation/javascript/get-api-key , then create a `.env.local` file locally **OUTSIDE OF `/src`** and enter
