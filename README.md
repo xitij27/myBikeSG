@@ -20,6 +20,15 @@ Body = {
 }  
 Returns "Email already in use", "true", "false", and "Database Error".  
 Note: Call sendEmail before signUp to send OTP else we get an error 500  
+### resetPassword  
+POST http://localhost:3000/api/resetPassword (For now)  
+Body = {    
+	"email": ,      
+	"password" : ,    
+	"otp":     
+}    
+Returns "Account does not exist", "true", "false", and "Database Error".  
+Note: Call sendOTP before resetPassword to send OTP else we get an error 500  
   
 ### sendOTP
 GET http://localhost:3000/api/sendOTP/:email  
