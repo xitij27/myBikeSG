@@ -10,11 +10,15 @@ const otherMethod = myModule.otherMethod*/
 // Date base Part
 const mongoose = require('mongoose');
 const accountDB2 = require('./models/accountsDB2');
+const bikeracksDB2 = require('./models/bikeracksDB2');
+const repairshopsDB2 = require('./models/repairshopsDB2');
 
 // Connect to mongoDB (use a promise with a catch block for errors)
 const dbURI = 'mongodb+srv://scared2compile:CZ2006@mybikesg-db.hfkb3.mongodb.net/Accounts?retryWrites=true&w=majority';
-mongoose.connect(dbURI).then((result) => console.log('Connected to db'))
+mongoose.connect(dbURI).then((result) => console.log('Connected to db Accounts'))
     .catch((err) => console.log(err));
+/*const dbURI2 = 'mongodb+srv://scared2compile:CZ2006@mybikesg-db.hfkb3.mongodb.net/BikeRacks?retryWrites=true&w=majority';
+const conn = mongoose.createConnection(dbURI2);*/
 
 // Loading Express
 const express = require('express');
@@ -148,6 +152,109 @@ app.post('/api/resetPassword/', (req, res) => {
         });
 });
 
+app.get('/api/bikeRacks', (req, res) => {
+    bikeracksDB2.find()
+    .then((result) => {
+        // console.log('Found: ', result);
+        res.send(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.send(500, "Database Error");
+    });
+});
+
+app.post('/api/addRacks', (req, res) => {
+    // Take account info from req
+    rackid = req.body.rack_id;
+    email = req.body.user_email;
+    lat = Math.round(req.body.lat * 10000)/10000;
+    long =  Math.round(req.body.long * 10000)/10000;
+    verified = Boolean(req.body.verified);
+    // Check if aleady in database or not
+    bikeracksDB2.find({
+        lat: lat,
+        long: long
+        })
+    .then((result) => {
+        if(result.length >= 1)
+            res.send('Already in Database');
+        else
+        {
+            // Actually save to DB
+            const bikerackDB2 = new bikeracksDB2({
+                user_email: email,
+                rack_id : rackid,
+                verified: verified,
+                lat : lat,
+                long: long
+            });
+            bikerackDB2.save()
+            .then((result) => {
+                res.send("true");
+            })
+            .catch((err) => {
+                res.send(500, "Database Error");
+            });
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        res.send(500, "Database Error");
+    });
+});
+
+app.get('/api/repairShops', (req, res) => {
+    repairshopsDB2.find()
+    .then((result) => {
+        // console.log('Found: ', result);
+        res.send(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.send(500, "Database Error");
+    });
+});
+
+app.post('/api/addRepairShops', (req, res) => {
+    // Take account info from req
+    shopid = req.body.shop_id;
+    email = req.body.contact;
+    lat = Math.round(req.body.lat * 100000)/100000;
+    long =  Math.round(req.body.long * 100000)/100000;
+    name1 = req.body.name;
+    // Check if aleady in database or not
+    repairshopsDB2.find({
+        lat: lat,
+        long: long
+        })
+    .then((result) => {
+        if(result.length >= 1)
+            res.send('Already in Database');
+        else
+        {
+            // Actually save to DB
+            const repairshopDB2 = new repairshopsDB2({
+                contact: email,
+                shop_id : shopid,
+                name: name1,
+                lat : lat,
+                long: long
+            });
+            repairshopDB2.save()
+            .then((result) => {
+                res.send("true");
+            })
+            .catch((err) => {
+                res.send(500, "Database Error");
+            });
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+        res.send(500, "Database Error");
+    });
+});
 
 // PORT
 const port = process.env.PORT || 3000; // process.env shows environment variables
