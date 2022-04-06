@@ -63,7 +63,8 @@ Returns "Already in Database", "true", "false", and "Database Error".
 ### Racks
 GET http://localhost:3000/api/bikeRacks  
 Returns a json file with all the bike racks in the database.  
-	
+
+## FrontEnd 
 App is inside `/mybikesg`, change directory to `/mybikesg` then run `npm start` to start the app in your local host
 
 Get Google Maps API key following https://developers.google.com/maps/documentation/javascript/get-api-key , then create a `.env.local` file locally **OUTSIDE OF `/src`** and enter
