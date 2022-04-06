@@ -71,7 +71,7 @@ app.post('/api/signUp/', (req, res) => {
                             res.send(val);
                         })
                         .catch((err) => {
-                            res.send("Database Error");
+                            res.send(500, "Database Error");
                     });
                 }
                 else
@@ -100,7 +100,7 @@ app.post('/api/login/', (req, res) => {
         })
         .then((result) => {
             if(result.length < 1)
-                res.send("Account does not exist.");
+                res.send(404, "Account does not exist.");
             if(result[0].password == password1)
                 res.send("true");
             else
@@ -108,10 +108,47 @@ app.post('/api/login/', (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.send("Database Error");
+            res.send(500, "Database Error");
         });
 
 });
+
+app.post('/api/resetPassword/', (req, res) => {
+    // Take account info from req
+    password = req.body.password;
+    email = req.body.email;
+    otp1 = String(req.body.otp);
+     // Call database and get account
+    accountDB2.find({
+        email: email
+        })
+        .then((result) => {
+            console.log('Found: ', result);
+            if(result.length >= 1 && AccMgr.resetPassword(email, otp1, password)){
+                // Update password in database
+                accountDB2.findByIdAndUpdate(result[0].id, {
+                    password: password
+                })
+                .then((result2) => {
+                    res.send('true');
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.send(500, 'Database Error');
+                })
+            }
+            else if(result.length < 1)
+                res.send(404, 'Account does not exist');
+            else
+                res.send('false');
+        })
+        .catch((err) => {
+            console.log(err);
+            res.send(500, "Database Error");
+        });
+});
+
+
 // PORT
 const port = process.env.PORT || 3000; // process.env shows environment variables
 
