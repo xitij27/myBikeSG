@@ -1,5 +1,5 @@
 /* global google */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { GoogleMap, Marker, InfoWindow, useLoadScript } from "@react-google-maps/api";
@@ -23,6 +23,7 @@ import "./Drawer.css";
 import "./Addrack.css";
 import {Addrack} from './Addrack.js';
 import racks_lta_json from "../data/lta-bicycle-rack-geojson.json";
+import racks_user_json from "../data/users-bicycle-racks.json";
 import bike_repairs_json from "../data/bike_repair.json";
 
 const mapContainerStyle = {
@@ -45,6 +46,12 @@ const libraries = ["places"];
 var racks_lta_locs = []
 for (const rack_details of racks_lta_json.features) {
     racks_lta_locs.push({ rack_details, "vis": true });
+}
+
+// array to hold rack locations (user supplied)
+var racks_user_locs = []
+for (const rack_details of racks_user_json) {
+    racks_user_locs.push({ rack_details, "vis": true });
 }
 
 // array to hold repair shop locations
@@ -79,31 +86,6 @@ export function Main() {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(14);
     }, []);
-
-
-    const [userRacks, setUserRacks] = useState({userRacks: null})
-    const callAPI = () => {
-        fetch("http://localhost:9000/api/BikeRacks")
-            .then(response => response.json())
-            .then(data => setUserRacks({userRacks: data}));
-    }
-    var racks_user_locs = []
-    useEffect(() => {
-        callAPI()
-    }, [])
-    console.log("in main.js")
-    console.log(userRacks)
-    // array to hold rack locations (user supplied)
-        
-    if (userRacks.userRacks) {
-        for (const rack_details of userRacks.userRacks) {
-            racks_user_locs.push({ rack_details, "vis": true });
-        }
-    }
-    
-    console.log(racks_user_locs)
-    if (racks_user_locs[0]) console.log(typeof(racks_user_locs[0].rack_details.lat.$numberDecimal))
-
 
     // For nav bar toggle visibility
     const [visOverall, toggleOverall] = useState(true)
@@ -187,9 +169,10 @@ export function Main() {
             
             
             // for user added racks
-            for (const rack_user_loc of racks_user_locs) {                
-                marker_lat = parseFloat(rack_user_loc.rack_details.lat.$numberDecimal)
-                marker_lng = parseFloat(rack_user_loc.rack_details.long.$numberDecimal)
+            for (const rack_user_loc of racks_user_locs) {
+                
+                marker_lat = rack_user_loc.rack_details.Lat
+                marker_lng = rack_user_loc.rack_details.Lng
                 start_kx = Math.cos(Math.PI * start.lat / 180) * 111;
                 start_dx = Math.abs(start.lng - marker_lng) * start_kx;
                 start_dy = Math.abs(start.lat - marker_lat) * 111;
@@ -209,8 +192,8 @@ export function Main() {
                         // if nearest rack is set to destination
                         if (nearest_rack_bool && marker_distance_dest < closest_marker_dist) {
                             // console.log("setting nearest dest to rack loc")
-                            nearest_rack_loc.lat = parseFloat(rack_user_loc.rack_details.lat.$numberDecimal)
-                            nearest_rack_loc.lng = parseFloat(rack_user_loc.rack_details.long.$numberDecimal)
+                            nearest_rack_loc.lat = rack_user_loc.rack_details.Lat
+                            nearest_rack_loc.lng = rack_user_loc.rack_details.Lng
                             closest_marker_dist = marker_distance_dest
                         }
                     }
@@ -345,7 +328,7 @@ export function Main() {
             {racks_user_locs.map(rack => (
                 <Marker
                     key={racks_user_locs.indexOf(rack)}
-                    position={{ lat: parseFloat(rack.rack_details.lat.$numberDecimal), lng: parseFloat(rack.rack_details.long.$numberDecimal) }}
+                    position={{ lat: rack.rack_details.Lat, lng: rack.rack_details.Lng }}
                     icon={{
                         url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
                         scaledSize: new window.google.maps.Size(30, 30),
@@ -393,13 +376,13 @@ export function Main() {
             {/* Display info for user racks when marker selected */}
             {selectedUserRack ? (
             <InfoWindow
-                position={{ lat: parseFloat(selectedUserRack.rack_details.lat.$numberDecimal), lng: parseFloat(selectedUserRack.rack_details.long.$numberDecimal) }}
+                position={{ lat: selectedUserRack.rack_details.Lat, lng: selectedUserRack.rack_details.Lng }}
                 onCloseClick={() => {setSelectedUserRack(null)}}
             >
                 <div>
-                    <b>User Added Rack #{selectedUserRack.rack_details.rack_id}</b>
-                    <p>Verified: {selectedUserRack.rack_details.verified? "yes" : "no"}</p>
-                    <p>Added by user: {selectedUserRack.rack_details.user_email}</p>
+                    <b>User Added Rack</b>
+                    <p>Verified: {selectedUserRack.rack_details.Verified? "yes" : "no"}</p>
+                    <p>Added by user: {selectedUserRack.rack_details.user_id}</p>
                 </div>
             </InfoWindow>) : null}
 
@@ -569,6 +552,9 @@ function Search({ placeholder, setInput, panTo, markMap }) {
 
 function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
 
+    function Home(){
+        alert("function not done")
+    }
     const [modalShow, setModalShow] = React.useState(false);
 
     return (
