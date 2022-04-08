@@ -26,7 +26,7 @@ var cors = require('cors')
 const res = require('express/lib/response');
 const app = express();
 app.use(express.json());
-app.use(cores())
+app.use(cors())
 
 app.get('/', (req, res) => {
     // Look at express documentation for full list of properties
