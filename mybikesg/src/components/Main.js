@@ -91,8 +91,8 @@ export function Main() {
     useEffect(() => {
         callAPI()
     }, [])
-    console.log("in main.js")
-    console.log(userRacks)
+    // console.log("in main.js")
+    // console.log(userRacks)
     // array to hold rack locations (user supplied)
         
     if (userRacks.userRacks) {
@@ -101,8 +101,8 @@ export function Main() {
         }
     }
     
-    console.log(racks_user_locs)
-    if (racks_user_locs[0]) console.log(typeof(racks_user_locs[0].rack_details.lat.$numberDecimal))
+    // console.log(racks_user_locs)
+    // if (racks_user_locs[0]) console.log(typeof(racks_user_locs[0].rack_details.lat.$numberDecimal))
 
 
     // For nav bar toggle visibility

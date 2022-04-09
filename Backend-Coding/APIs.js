@@ -191,7 +191,7 @@ app.post('/api/addRacks', (req, res) => {
                 });
                 bikerackDB2.save()
                     .then((result) => {
-                        res.send("true");
+                        res.send("Your request has been submitted!");
                     })
                     .catch((err) => {
                         res.send(500, "Database Error");
