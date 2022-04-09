@@ -42,13 +42,13 @@ class AccMgr
         var transporter = nodemailer.createTransport({
         service:'gmail',
         auth: {
-        user: 'nodejs049@gmail.com',
+        user: 'scared2compile@gmail.com',
         pass: 'REDACTED_EMAIL_PASSWORD'
         }
         });
 
         var mailOptions = {
-        from: 'nodejs049@gmail.com',
+        from: 'scared2compile@gmail.com',
         to: email,
         subject: 'your otp',
         text: otp
