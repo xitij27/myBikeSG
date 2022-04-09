@@ -1,9 +1,7 @@
 /* global google */
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Wrapper } from "@googlemaps/react-wrapper";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { GoogleMap, Marker, InfoWindow, useLoadScript } from "@react-google-maps/api";
-import { Modal, Button } from 'react-bootstrap'
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -58,7 +56,7 @@ var directionsRenderer
 var nearest_rack_bool = false;
 var nearest_rack_loc = { lat: null, lng: null };
 
-export function Main() {
+export function Main({ toggleGuest, guest, loggedIn }) {
     // misc stuff
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -80,6 +78,7 @@ export function Main() {
         mapRef.current.setZoom(14);
     }, []);
 
+    const user = "scared2compile@gmail.com"
 
     const [userRacks, setUserRacks] = useState({ userRacks: null })
     const callAPI = () => {
@@ -307,6 +306,10 @@ export function Main() {
     }
 
     return <div>
+
+        {guest ? <a className='user'>Logged in as: Guest</a> : null}
+        {loggedIn ? <a className='user'>Logged in as: {user}</a> : null}
+
         <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={12.8}
@@ -427,10 +430,13 @@ export function Main() {
         </Router>
         <Router>
             <Navbar
+                guest={guest}
+                toggleGuest={toggleGuest}
                 setOverall={setOverall}
                 setRepairVis={setRepairVis}
                 setRackVis={setRackVis}
-                setRouteVis={setRouteVis} />
+                setRouteVis={setRouteVis}
+            />
         </Router>
 
 
@@ -567,7 +573,7 @@ function Search({ placeholder, setInput, panTo, markMap }) {
     );
 }
 
-function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
+function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest, guest }) {
 
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -600,6 +606,8 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
             <button className='btn-pad'></button>
 
             <Addrack
+                guest={guest}
+                toggleGuest={toggleGuest}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
             ></Addrack>

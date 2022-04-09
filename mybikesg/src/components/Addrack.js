@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./Addrack.css"
 import "./Navbar.css"
 import usePlacesAutocomplete, {
@@ -18,7 +18,7 @@ import "@reach/combobox/styles.css";
 import "./Drawer.css";
 import axios from 'axios';
 
-export function Addrack({ modalShow, setModalShow }) {
+export function Addrack({ modalShow, setModalShow, toggleGuest, guest, reloadmap }) {
 
     const user_email = "scared2compile@gmail.com"
 
@@ -26,6 +26,12 @@ export function Addrack({ modalShow, setModalShow }) {
         setModalShow(!modalShow);
     }
     const handleShow = () => {
+        if (guest) {
+            alert("Please log in first before performing this action")
+            toggleGuest()
+            console.log(guest)
+            return
+        }
         setModalShow(!modalShow);
     }
     const onUserRackSubmit = () => {
@@ -60,6 +66,7 @@ export function Addrack({ modalShow, setModalShow }) {
 
 
         setModalShow(!modalShow);
+
     }
 
     const [rack_user_loc, setLoc] = useState({ lat: null, lng: null })
