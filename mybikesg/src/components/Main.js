@@ -56,7 +56,7 @@ var directionsRenderer
 var nearest_rack_bool = false;
 var nearest_rack_loc = { lat: null, lng: null };
 
-export function Main({ toggleGuest, guest, loggedIn }) {
+export function Main({ toggleGuest, guest, user, loggedIn }) {
     // misc stuff
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -77,8 +77,6 @@ export function Main({ toggleGuest, guest, loggedIn }) {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(14);
     }, []);
-
-    const user = "scared2compile@gmail.com"
 
     const [userRacks, setUserRacks] = useState({ userRacks: null })
     const callAPI = () => {
@@ -307,8 +305,8 @@ export function Main({ toggleGuest, guest, loggedIn }) {
 
     return <div>
 
-        {guest ? <a className='user'>Logged in as: Guest</a> : null}
-        {loggedIn ? <a className='user'>Logged in as: {user}</a> : null}
+        {guest ? <p className='user'>Logged in as: Guest</p> : null}
+        {loggedIn ? <p className='user'>Logged in as: {user}</p> : null}
 
         <GoogleMap
             mapContainerStyle={mapContainerStyle}
@@ -431,6 +429,7 @@ export function Main({ toggleGuest, guest, loggedIn }) {
         <Router>
             <Navbar
                 guest={guest}
+                user={user}
                 toggleGuest={toggleGuest}
                 setOverall={setOverall}
                 setRepairVis={setRepairVis}
@@ -573,7 +572,7 @@ function Search({ placeholder, setInput, panTo, markMap }) {
     );
 }
 
-function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest, guest }) {
+function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest, guest, user }) {
 
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -607,6 +606,7 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest
 
             <Addrack
                 guest={guest}
+                user={user}
                 toggleGuest={toggleGuest}
                 modalShow={modalShow}
                 setModalShow={setModalShow}

@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-  width: 500px;
+  width: 30%;
   margin: 30px auto;
   overflow: auto;
  
@@ -83,6 +83,12 @@ body {
   text-align: left;
   margin-left: 16px;
   font-size: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .signupform-control input {
