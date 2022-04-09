@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./Addrack.css"
@@ -16,8 +16,12 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "./Drawer.css";
+import axios from 'axios';
 
 export function Addrack({ modalShow, setModalShow }) {
+
+    const user_email = "scared2compile@gmail.com"
+
     const handleClose = () => {
         setModalShow(!modalShow);
     }
@@ -26,16 +30,50 @@ export function Addrack({ modalShow, setModalShow }) {
     }
     const onUserRackSubmit = () => {
 
-        //////////////////////////////////////////////
-        //// NEED TO SEND RACK TO BACKEND HERE!!!! ///
-        //////////////////////////////////////////////
+        if (rack_user_loc.lat == null || rack_user_loc.lng == null) {
+            alert("A location is required")
+            return
+        }
 
-        console.log(rack_user_loc)
-        alert("Your request has been submitted!")
+        // console.log("in submit")
+        // console.log(max_id)
+
+        var rackinfo = {
+            rack_id: max_id,
+            user_email: user_email,
+            lat: rack_user_loc.lat,
+            long: rack_user_loc.lng,
+            verified: false
+        }
+        axios
+            .post('http://localhost:9000/api/addRacks', rackinfo)
+            .then(response => alert(response.data))
+            .catch(err => console.log(err));
+
+        // console.log(rack_user_loc)
+
+        rackinfo.rack_id = null
+        rackinfo.user_email = null
+        rackinfo.lat = null
+        rackinfo.long = null
+        rackinfo.verified = false
+
+
         setModalShow(!modalShow);
     }
 
-    const [rack_user_loc, setLoc] = useState({lat: null, lng: null})
+    const [rack_user_loc, setLoc] = useState({ lat: null, lng: null })
+    const [max_id, setId] = useState(0)
+
+    // to get the max id
+    const callAPI = () => {
+        fetch("http://localhost:9000/api/BikeRacks")
+            .then(response => response.json())
+            .then(data => setId([data.length][0]))
+    }
+    useEffect(() => {
+        callAPI()
+    }, [])
 
     return (
         <>
@@ -51,27 +89,27 @@ export function Addrack({ modalShow, setModalShow }) {
                     <Modal.Header closeButton>
                         <Modal.Title>
                             <h3>
-                            Add Racks
+                                Add Racks
                             </h3>
                         </Modal.Title>
                     </Modal.Header>
-                        <Modal.Body>
-                            <div className="form-control">
-                                <Search
-                                    placeholder={"Location"}
-                                    setInput={({ lat, lng }) => setLoc({ lat, lng })}
-                                />
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={onUserRackSubmit}>
-                                Submit
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <Modal.Body>
+                        <div className="form-control">
+                            <Search
+                                placeholder={"Location"}
+                                setInput={({ lat, lng }) => setLoc({ lat, lng })}
+                            />
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={onUserRackSubmit}>
+                            Submit
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </Router>
         </>
     )

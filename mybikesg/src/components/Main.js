@@ -21,7 +21,7 @@ import * as GrIcons from "react-icons/gr";
 import MapStyle from './MapStyle'
 import "./Drawer.css";
 import "./Addrack.css";
-import {Addrack} from './Addrack.js';
+import { Addrack } from './Addrack.js';
 import racks_lta_json from "../data/lta-bicycle-rack-geojson.json";
 import bike_repairs_json from "../data/bike_repair.json";
 
@@ -56,7 +56,7 @@ for (const repair_details of bike_repairs_json) {
 var directionsService
 var directionsRenderer
 var nearest_rack_bool = false;
-var nearest_rack_loc = {lat: null, lng: null};
+var nearest_rack_loc = { lat: null, lng: null };
 
 export function Main() {
     // misc stuff
@@ -72,7 +72,7 @@ export function Main() {
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
-        
+
     }, []);
 
     const panTo = React.useCallback(({ lat, lng }) => {
@@ -81,39 +81,39 @@ export function Main() {
     }, []);
 
 
-    const [userRacks, setUserRacks] = useState({userRacks: null})
+    const [userRacks, setUserRacks] = useState({ userRacks: null })
     const callAPI = () => {
         fetch("http://localhost:9000/api/BikeRacks")
             .then(response => response.json())
-            .then(data => setUserRacks({userRacks: data}));
+            .then(data => setUserRacks({ userRacks: data }));
     }
     var racks_user_locs = []
     useEffect(() => {
         callAPI()
     }, [])
-    console.log("in main.js")
-    console.log(userRacks)
+    // console.log("in main.js")
+    // console.log(userRacks)
     // array to hold rack locations (user supplied)
-        
+
     if (userRacks.userRacks) {
         for (const rack_details of userRacks.userRacks) {
             racks_user_locs.push({ rack_details, "vis": true });
         }
     }
-    
-    console.log(racks_user_locs)
-    if (racks_user_locs[0]) console.log(typeof(racks_user_locs[0].rack_details.lat.$numberDecimal))
+
+    // console.log(racks_user_locs)
+    // if (racks_user_locs[0]) console.log(typeof(racks_user_locs[0].rack_details.lat.$numberDecimal))
 
 
     // For nav bar toggle visibility
     const [visOverall, toggleOverall] = useState(true)
-    const setOverall = () => {toggleOverall(!visOverall); plot_all()}
+    const setOverall = () => { toggleOverall(!visOverall); plot_all() }
     const [visRacks, toggleRacks] = useState(true)
-    const setRackVis = () => {toggleRacks(!visRacks)}
+    const setRackVis = () => { toggleRacks(!visRacks) }
     const [visRepairs, toggleRepairs] = useState(true)
     const setRepairVis = () => toggleRepairs(!visRepairs)
     const [visRoute, toggleRoute] = useState(true)
-    const setRouteVis = () => {toggleRoute(!visRoute); check_start_dest()}
+    const setRouteVis = () => { toggleRoute(!visRoute); check_start_dest() }
 
     // only remove ever market if all are shown, otherwise show all markers
     const plot_all = () => {
@@ -138,7 +138,7 @@ export function Main() {
     // start and dest locations, {lat, lng}
     const [start, setStart] = useState({ lat: 0, lng: 0 });
     const [dest, setDest] = useState({ lat: 0, lng: 0 });
-    
+
 
     const plot_racks = () => {
         if (visRacks && start && (start.lat !== 0 && start.lng !== 0)) {
@@ -159,10 +159,10 @@ export function Main() {
                     dest_kx = Math.cos(Math.PI * dest.lat / 180) * 111;
                     dest_dx = Math.abs(dest.lng - marker_lng) * dest_kx;
                     dest_dy = Math.abs(dest.lat - marker_lat) * 111;
-                    
+
                     // if marker distance > range, make it disappear
                     marker_distance_dest = Math.sqrt(dest_dx * dest_dx + dest_dy * dest_dy)
-                    
+
                     if ((marker_distance_start > range) && (marker_distance_dest > range)) {
                         rack_lta_loc.vis = false;
                     } else {
@@ -179,15 +179,15 @@ export function Main() {
                 // if only start is given
                 else {
                     // if marker distance > range, make it disappear
-                    if ( marker_distance_start > range) {
+                    if (marker_distance_start > range) {
                         rack_lta_loc.vis = false;
                     } else rack_lta_loc.vis = true;
                 }
             }
-            
-            
+
+
             // for user added racks
-            for (const rack_user_loc of racks_user_locs) {                
+            for (const rack_user_loc of racks_user_locs) {
                 marker_lat = parseFloat(rack_user_loc.rack_details.lat.$numberDecimal)
                 marker_lng = parseFloat(rack_user_loc.rack_details.long.$numberDecimal)
                 start_kx = Math.cos(Math.PI * start.lat / 180) * 111;
@@ -233,7 +233,7 @@ export function Main() {
                 for (const rack_lta_loc of racks_lta_locs) rack_lta_loc.vis = false
                 for (const rack_user_loc of racks_user_locs) rack_user_loc.vis = false
             }
-            
+
         }
     }
 
@@ -280,13 +280,13 @@ export function Main() {
     }
 
     // route planning
-    
+
     directionsRenderer.setMap(mapRef.current);
 
     const origin = { lat: start.lat, lng: start.lng };
     var destination
     if (nearest_rack_bool && nearest_rack_loc.lat != null && nearest_rack_loc.lng != null) {
-        destination = {lat: nearest_rack_loc.lat, lng: nearest_rack_loc.lng}
+        destination = { lat: nearest_rack_loc.lat, lng: nearest_rack_loc.lng }
     } else destination = { lat: dest.lat, lng: dest.lng };
 
     if (origin.lat !== 0 && origin.lng !== 0 && destination.lat !== 0 && destination.lng !== 0) {
@@ -392,16 +392,16 @@ export function Main() {
 
             {/* Display info for user racks when marker selected */}
             {selectedUserRack ? (
-            <InfoWindow
-                position={{ lat: parseFloat(selectedUserRack.rack_details.lat.$numberDecimal), lng: parseFloat(selectedUserRack.rack_details.long.$numberDecimal) }}
-                onCloseClick={() => {setSelectedUserRack(null)}}
-            >
-                <div>
-                    <b>User Added Rack #{selectedUserRack.rack_details.rack_id}</b>
-                    <p>Verified: {selectedUserRack.rack_details.verified? "yes" : "no"}</p>
-                    <p>Added by user: {selectedUserRack.rack_details.user_email}</p>
-                </div>
-            </InfoWindow>) : null}
+                <InfoWindow
+                    position={{ lat: parseFloat(selectedUserRack.rack_details.lat.$numberDecimal), lng: parseFloat(selectedUserRack.rack_details.long.$numberDecimal) }}
+                    onCloseClick={() => { setSelectedUserRack(null) }}
+                >
+                    <div>
+                        <b>User Added Rack #{selectedUserRack.rack_details.rack_id}</b>
+                        <p>Verified: {selectedUserRack.rack_details.verified ? "yes" : "no"}</p>
+                        <p>Added by user: {selectedUserRack.rack_details.user_email}</p>
+                    </div>
+                </InfoWindow>) : null}
 
             {/* Display info window for repair shops when marker selected */}
             {selectedShop ? (<InfoWindow
@@ -418,21 +418,21 @@ export function Main() {
 
         </GoogleMap>
         <Router>
-            <Drawer 
+            <Drawer
                 onSend={send_loc}
-                panTo={panTo} 
-                markStart={markStart} 
+                panTo={panTo}
+                markStart={markStart}
                 markDest={markDest}
             />
         </Router>
         <Router>
-            <Navbar 
-                setOverall={setOverall} 
-                setRepairVis={setRepairVis} 
+            <Navbar
+                setOverall={setOverall}
+                setRepairVis={setRepairVis}
                 setRackVis={setRackVis}
-                setRouteVis={setRouteVis}/>
+                setRouteVis={setRouteVis} />
         </Router>
-        
+
 
 
     </div>
@@ -479,7 +479,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
                                     setInput={({ lat, lng }) => setStart({ lat, lng })}
                                     panTo={panTo}
                                     markMap={markStart}
-                                    
+
                                 />
                             </div>
                             <div className="form-control">
@@ -489,7 +489,7 @@ const Drawer = ({ onSend, panTo, markStart, markDest }) => {
                                     setInput={({ lat, lng }) => setDest({ lat, lng })}
                                     panTo={panTo}
                                     markMap={markDest}
-                                
+
                                 />
                             </div>
                             <div className="form-control form-control-check">
@@ -574,34 +574,34 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis }) {
     return (
         <div className='nav-bar'>
             <button className='nav-pad'></button>
-            <button 
+            <button
                 className='btn-nav'
                 onClick={setOverall}>
-                    Home
+                Home
             </button>
             <button className='btn-pad'></button>
-            <button 
+            <button
                 className='btn-nav'
                 onClick={setRouteVis}>
-                    Route
+                Route
             </button>
             <button className='btn-pad'></button>
-            <button 
+            <button
                 className='btn-nav'
                 onClick={setRepairVis}>
-                    Repair Shops
-            </button> 
+                Repair Shops
+            </button>
             <button className='btn-pad'></button>
-            <button 
+            <button
                 className='btn-nav'
                 onClick={setRackVis}>
-                    Racks
-            </button> 
+                Racks
+            </button>
             <button className='btn-pad'></button>
-    
-            <Addrack 
-                modalShow = {modalShow} 
-                setModalShow = {setModalShow}
+
+            <Addrack
+                modalShow={modalShow}
+                setModalShow={setModalShow}
             ></Addrack>
         </div>
     )
