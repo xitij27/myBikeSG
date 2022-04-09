@@ -18,9 +18,7 @@ import "@reach/combobox/styles.css";
 import "./Drawer.css";
 import axios from 'axios';
 
-export function Addrack({ modalShow, setModalShow, toggleGuest, guest, reloadmap }) {
-
-    const user_email = "scared2compile@gmail.com"
+export function Addrack({ modalShow, setModalShow, toggleGuest, guest, user }) {
 
     const handleClose = () => {
         setModalShow(!modalShow);
@@ -46,7 +44,7 @@ export function Addrack({ modalShow, setModalShow, toggleGuest, guest, reloadmap
 
         var rackinfo = {
             rack_id: max_id,
-            user_email: user_email,
+            user_email: user,
             lat: rack_user_loc.lat,
             long: rack_user_loc.lng,
             verified: false

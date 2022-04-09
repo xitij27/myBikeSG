@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "nodemailer": "^6.7.3",
     "prompt-sync": "^4.2.0"
   }
 }
