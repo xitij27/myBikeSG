@@ -34,7 +34,7 @@ export function Addrack({ modalShow, setModalShow }) {
             alert("A location is required")
             return
         }
-    
+
         // console.log("in submit")
         // console.log(max_id)
 
@@ -51,7 +51,7 @@ export function Addrack({ modalShow, setModalShow }) {
             .catch(err => console.log(err));
 
         // console.log(rack_user_loc)
-        
+
         rackinfo.rack_id = null
         rackinfo.user_email = null
         rackinfo.lat = null
@@ -62,7 +62,7 @@ export function Addrack({ modalShow, setModalShow }) {
         setModalShow(!modalShow);
     }
 
-    const [rack_user_loc, setLoc] = useState({lat: null, lng: null})
+    const [rack_user_loc, setLoc] = useState({ lat: null, lng: null })
     const [max_id, setId] = useState(0)
 
     // to get the max id
@@ -73,7 +73,7 @@ export function Addrack({ modalShow, setModalShow }) {
     }
     useEffect(() => {
         callAPI()
-    }, [])    
+    }, [])
 
     return (
         <>
@@ -89,27 +89,27 @@ export function Addrack({ modalShow, setModalShow }) {
                     <Modal.Header closeButton>
                         <Modal.Title>
                             <h3>
-                            Add Racks
+                                Add Racks
                             </h3>
                         </Modal.Title>
                     </Modal.Header>
-                        <Modal.Body>
-                            <div className="form-control">
-                                <Search
-                                    placeholder={"Location"}
-                                    setInput={({ lat, lng }) => setLoc({ lat, lng })}
-                                />
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={onUserRackSubmit}>
-                                Submit
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <Modal.Body>
+                        <div className="form-control">
+                            <Search
+                                placeholder={"Location"}
+                                setInput={({ lat, lng }) => setLoc({ lat, lng })}
+                            />
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={onUserRackSubmit}>
+                            Submit
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </Router>
         </>
     )
