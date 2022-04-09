@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm';
 
-const Login = ({ toggleLogin, toggleGuest }) => {
+const Login = ({ toggleLogin, toggleGuest, setUser }) => {
 
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(true);
@@ -12,6 +12,8 @@ const Login = ({ toggleLogin, toggleGuest }) => {
         setLogin(!login)
     }
 
+    // function to verify user
+
     return (
         <Router>
             <div className='container'>
@@ -19,6 +21,7 @@ const Login = ({ toggleLogin, toggleGuest }) => {
                     showSignUp={showSignUp}
                     toggleLogin={toggleLogin}
                     toggleGuest={toggleGuest}
+                    setUser={setUser}
                 /> : null}
 
                 {signUp ? <SignUpForm

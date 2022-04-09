@@ -38,8 +38,19 @@ app.get('/api/sendOTP', (req, res) => {
 });
 
 app.get('/api/sendOTP/:email', (req, res) => {
-    main2(req.params.email);
-    res.send("Sent: ");
+    accountDB2.find({
+        email: req.params.email
+    })
+        .then((result) => {
+            console.log('Found: ', result);
+            if (result.length >= 1) {
+                console.log("Email " + req.params.email + " found in MongoDB");
+                res.send("Email already in use");
+            } else {
+                main2(req.params.email);
+                res.send("OTP has been sent to your email at: ".concat(req.params.email));
+            }
+        })
     // Use req.params.id to read the params passed on the request
 });
 
@@ -107,9 +118,9 @@ app.post('/api/login/', (req, res) => {
             if (result.length < 1)
                 res.send(404, "Account does not exist.");
             if (result[0].password == password1)
-                res.send("true");
+                res.send("Login Success");
             else
-                res.send("false");
+                res.send(false);
         })
         .catch((err) => {
             console.log(err);
