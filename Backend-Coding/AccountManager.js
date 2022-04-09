@@ -43,7 +43,7 @@ class AccMgr
         service:'gmail',
         auth: {
         user: 'scared2compile@gmail.com',
-        pass: 'CZ2006@2002'
+        pass: 'CZ2006@2022'
         }
         });
 
