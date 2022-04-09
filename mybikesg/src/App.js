@@ -1,14 +1,27 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React, { useState } from 'react'
 import {Main} from './components/Main'
+import Login from './components/Login'
 
 
 
 const App = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
+    const toggleLogin = () => setLoggedIn(!loggedIn)
+    const [guest, setGuest] = useState(false);
+    const toggleGuest = () => setGuest(!guest)
+
     return (
         <>
-            <Main/>
-            {/* <Navbar/> */}
+            {loggedIn || guest ? null
+                : <Login
+                    toggleLogin={toggleLogin}
+                    toggleGuest={toggleGuest}
+                />}
+            <Main 
+                toggleGuest={toggleGuest}
+                guest={guest}
+                loggedIn={loggedIn}
+            />
         </>
     )
 }
