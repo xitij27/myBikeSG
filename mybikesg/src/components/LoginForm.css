@@ -68,8 +68,8 @@ body {
 
 .loginbtn-block {
   display: block;
-  width: 85%;
-  margin-left: 7.5%;
+  width: 103%;
+  height: 12%;
   border-radius: 100px;
   align-self: center;
 }
@@ -105,6 +105,12 @@ body {
 
 .guest {
   margin-left:200px;
+}
+
+.forgetpw {
+  font-size: 15px;
+  margin-top: 30px;
+  margin-left: 300px;
 }
 
 /*                  *******FOR IMPLEMENTING CHECK BOXES********
