@@ -37,19 +37,31 @@ app.get('/api/sendOTP', (req, res) => {
     res.send("Please add your email to URL");
 });
 
-app.get('/api/sendOTP/:email', (req, res) => {
+app.get('/api/sendOTP/:reset/:email/', (req, res) => {
+    const reset = req.params.reset
     accountDB2.find({
         email: req.params.email
     })
         .then((result) => {
+            console.log(req.body)
             console.log('Found: ', result);
-            if (result.length >= 1) {
-                console.log("Email " + req.params.email + " found in MongoDB");
-                res.send("Email already in use");
-            } else {
-                main2(req.params.email);
-                res.send("OTP has been sent to your email at: ".concat(req.params.email));
-            }
+            if (reset === "0") {
+                if (result.length >= 1) {
+                    console.log("Email " + req.params.email + " found in MongoDB");
+                    res.send("Email already in use");
+                } else {
+                    main2(req.params.email);
+                    res.send("OTP has been sent to your email at: ".concat(req.params.email));
+                }
+            } else 
+                if (result.length === 0) {
+                    console.log("Email " + req.params.email + " not found in MongoDB");
+                    res.send("Email does not have an account");
+                } else {
+                    main2(req.params.email);
+                    res.send("OTP has been sent to your email at: ".concat(req.params.email));
+                }
+        
         })
     // Use req.params.id to read the params passed on the request
 });
@@ -134,6 +146,7 @@ app.post('/api/resetPassword/', (req, res) => {
     password = req.body.password;
     email = req.body.email;
     otp1 = String(req.body.otp);
+    console.log(password, email, otp1)
     // Call database and get account
     accountDB2.find({
         email: email
@@ -156,7 +169,7 @@ app.post('/api/resetPassword/', (req, res) => {
             else if (result.length < 1)
                 res.send(404, 'Account does not exist');
             else
-                res.send('false');
+                res.send('Your OTP is wrong, request for a new OTP again');
         })
         .catch((err) => {
             console.log(err);

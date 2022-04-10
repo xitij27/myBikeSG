@@ -18,7 +18,7 @@ import "@reach/combobox/styles.css";
 import "./Drawer.css";
 import axios from 'axios';
 
-export function Addrack({ modalShow, setModalShow, toggleGuest, guest, user }) {
+export function Addrack({ url, modalShow, setModalShow, toggleGuest, guest, user }) {
 
     const handleClose = () => {
         setModalShow(!modalShow);
@@ -41,6 +41,7 @@ export function Addrack({ modalShow, setModalShow, toggleGuest, guest, user }) {
 
         // console.log("in submit")
         // console.log(max_id)
+        const addRacks_url = url.concat("/api/addRacks")
 
         var rackinfo = {
             rack_id: max_id,
@@ -50,7 +51,7 @@ export function Addrack({ modalShow, setModalShow, toggleGuest, guest, user }) {
             verified: false
         }
         axios
-            .post('http://localhost:9000/api/addRacks', rackinfo)
+            .post(addRacks_url, rackinfo)
             .then(response => alert(response.data))
             .catch(err => console.log(err));
 
@@ -70,9 +71,11 @@ export function Addrack({ modalShow, setModalShow, toggleGuest, guest, user }) {
     const [rack_user_loc, setLoc] = useState({ lat: null, lng: null })
     const [max_id, setId] = useState(0)
 
+    const bikeRacks_url = url.concat("/api/BikeRacks")
+
     // to get the max id
     const callAPI = () => {
-        fetch("http://localhost:9000/api/BikeRacks")
+        fetch(bikeRacks_url)
             .then(response => response.json())
             .then(data => setId([data.length][0]))
     }
