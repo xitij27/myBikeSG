@@ -4,7 +4,11 @@ import CryptoJS from 'crypto-js'
 import "./SignUpForm.css"
 import axios from 'axios'
 
-const SignUpForm = ({ showSignUp }) => {
+const SignUpForm = ({ url, showSignUp }) => {
+
+    const otp_url = url.concat("/api/sendOTP/0/")
+    const signup_url = url.concat("/api/signUp/")
+
     // function that sends data to backend
     const sendOTP = () => {
         const user_email = document.getElementById("email").value
@@ -15,7 +19,7 @@ const SignUpForm = ({ showSignUp }) => {
             alert("Please ensure you have filled in all fields");
             return;
         }
-        axios.get("http://localhost:9000/api/sendOTP/".concat(user_email).toString())
+        axios.get(otp_url.concat(user_email).toString())
         .then(response => alert(response.data))
         .catch(err => console.log(err))
     }
@@ -28,7 +32,7 @@ const SignUpForm = ({ showSignUp }) => {
             dob: document.getElementById("dob").value,
             otp: document.getElementById("OTP").value
         }
-        axios.post("http://localhost:9000/api/signUp/", data)
+        axios.post(signup_url, data)
             .then(response => alert(response.data))
             .catch(err => console.log(err))
     }

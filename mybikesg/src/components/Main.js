@@ -56,7 +56,7 @@ var directionsRenderer
 var nearest_rack_bool = false;
 var nearest_rack_loc = { lat: null, lng: null };
 
-export function Main({ toggleGuest, guest, user, loggedIn }) {
+export function Main({ url, toggleGuest, guest, user, loggedIn }) {
     // misc stuff
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -78,9 +78,11 @@ export function Main({ toggleGuest, guest, user, loggedIn }) {
         mapRef.current.setZoom(14);
     }, []);
 
+    const bikeRacks_url = url.concat("/api/BikeRacks")
+
     const [userRacks, setUserRacks] = useState({ userRacks: null })
     const callAPI = () => {
-        fetch("http://localhost:9000/api/BikeRacks")
+        fetch(bikeRacks_url)
             .then(response => response.json())
             .then(data => setUserRacks({ userRacks: data }));
     }
@@ -428,6 +430,7 @@ export function Main({ toggleGuest, guest, user, loggedIn }) {
         </Router>
         <Router>
             <Navbar
+                url={url}
                 guest={guest}
                 user={user}
                 toggleGuest={toggleGuest}
@@ -572,7 +575,7 @@ function Search({ placeholder, setInput, panTo, markMap }) {
     );
 }
 
-function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest, guest, user }) {
+function Navbar({ url, setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest, guest, user }) {
 
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -605,6 +608,7 @@ function Navbar({ setOverall, setRepairVis, setRackVis, setRouteVis, toggleGuest
             <button className='btn-pad'></button>
 
             <Addrack
+                url={url}
                 guest={guest}
                 user={user}
                 toggleGuest={toggleGuest}

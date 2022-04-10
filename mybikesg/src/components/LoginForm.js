@@ -4,14 +4,21 @@ import "./LoginForm.css"
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
 
-const loginform = ({ showSignUp, toggleLogin, toggleGuest, setUser }) => {
+const loginform = ({ url, showSignUp, showForgetPw, toggleLogin, toggleGuest, setUser }) => {
 
     const loginSubmit = () => {
+        
+        const login_url = url.concat("/api/login/");
+
         const data = {
             email: document.getElementById("email").value,
             password: CryptoJS.SHA256(document.getElementById("password").value).toString()
         }
-        axios.post("http://localhost:9000/api/login/", data)
+        if (!data.email || !data.password) {
+            alert("Please enter login credentials")
+            return;
+        }
+        axios.post(login_url, data)
             .then(response => {
                 if (response.data) {
                     toggleLogin(); 
@@ -31,7 +38,12 @@ const loginform = ({ showSignUp, toggleLogin, toggleGuest, setUser }) => {
                 <input id="password" type="password" placeholder="Password" required={true} />
                 {/* <label><p href='#' >Forgot Password?</p></label> */}
             </div>
+            
+            <Link to='#' className='forgetpw' onClick={showForgetPw}>
+                Forgot password?
+            </Link>
             <button type='button' value='Continue' className='loginbtn loginbtn-block' onClick={loginSubmit}>Login</button>
+            
             <Link to='#' onClick={showSignUp}>
                 Sign up
             </Link>
