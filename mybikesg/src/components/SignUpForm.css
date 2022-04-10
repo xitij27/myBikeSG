@@ -64,8 +64,7 @@ body {
 
 .signupbtn-block {
   display: block;
-  width: 85%;
-  margin-left: 7.5%;
+  width: 101%;
   border-radius: 100px;
   align-self: center;
 }
