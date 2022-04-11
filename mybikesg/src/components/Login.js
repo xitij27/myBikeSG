@@ -40,7 +40,6 @@ const Login = ({ url, toggleLogin, toggleGuest, setUser }) => {
                 {forgetpw ? <ResetPasswordForm
                     url={url}
                     showForgetPw={showForgetPw}
-                    toggleLogin={toggleLogin}
                 /> : null}
 
             </div>

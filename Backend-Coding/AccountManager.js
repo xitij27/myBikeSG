@@ -27,20 +27,15 @@ class AccMgr
     }
 
     static resetPassword(email, otp, password) {
-        try{
-            if (!(AccMgr.OTPs.get(email).checkOTP(otp))) {
-                return false;
-            } else {
-                console.log(AccMgr.accs.get(email))
-                AccMgr.accs.get(email).updatePassword(password);
-                AccMgr.OTPs.delete(email);
-                // Above code needs to do tested and may break
-                // This code is broken (11 April)
-                return true;
-            }
-        } catch {
-            return false
+    
+        if (!(AccMgr.OTPs.get(email).checkOTP(otp))) {
+            return false;
+        } else {
+            // AccMgr.accs.get(email).updatePassword(password);
+            AccMgr.OTPs.delete(email);
+            return true;
         }
+        
     }
     static async sendEmail(email,otp)
     {
