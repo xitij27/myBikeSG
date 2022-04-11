@@ -159,7 +159,7 @@ app.post('/api/resetPassword/', (req, res) => {
                     password: password
                 })
                     .then((result2) => {
-                        res.send('true');
+                        res.send('Password has been changed');
                     })
                     .catch((err) => {
                         console.log(err);
