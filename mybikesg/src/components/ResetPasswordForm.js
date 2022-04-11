@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
 import "./resetpasswordform.css"
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
 
-const ResetPasswordForm = ({ url, showForgetPw, toggleLogin }) => { 
+const ResetPasswordForm = ({ url, showForgetPw }) => { 
     const sendOTP = () => {
         const otp_url = url.concat("/api/sendOTP/1/")
         const user_email = document.getElementById("email").value
@@ -13,7 +13,7 @@ const ResetPasswordForm = ({ url, showForgetPw, toggleLogin }) => {
         if (!user_email || !password || !confirmpassword) {
             alert("Please ensure you have filled in all fields");
             return;
-        } else if (password != confirmpassword) {
+        } else if (password !== confirmpassword) {
             alert("Make sure both your passwords match");
             return;
         }
@@ -32,6 +32,8 @@ const ResetPasswordForm = ({ url, showForgetPw, toggleLogin }) => {
         axios.post(reset_url, data)
             .then(response => alert(response.data))
             .catch(err => console.log(err))
+
+        showForgetPw()
     }
     return (
         <form className="add-form">
