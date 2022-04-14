@@ -41,15 +41,14 @@ class AccMgr
     {
         var nodemailer = require('nodemailer');
         var transporter = nodemailer.createTransport({
-        service:'gmail',
+        service:'outlook',
         auth: {
-        user: 'scared2compile@gmail.com',
+        user: 'scared2compile@outlook.com',
         pass: 'CZ2006@2022'
         }
         });
-
         var mailOptions = {
-        from: 'scared2compile@gmail.com',
+        from: 'scared2compile@outlook.com',
         to: email,
         subject: 'Your One-Time-Password for login to MyBikeSG ',
         text: 'Your OTP is '+otp+'. This OTP is valid for 15 minutes. Please do not share with anyone. If you have logged in again, then do not use this OTP.'
