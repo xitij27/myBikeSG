@@ -127,16 +127,17 @@ app.post('/api/login/', (req, res) => {
         email: email
     })
         .then((result) => {
-            if (result.length < 1)
-                res.send(404, "Account does not exist.");
-            if (result[0].password == password1)
-                res.send("Login Success");
-            else
-                res.send(false);
+            if (result.length < 1) {
+                res.status(404).send("Account does not exist.");
+            }
+            else {
+                if (result[0].password == password1) res.send("Login Success");
+                else res.send("Incorrect Password");
+            } 
         })
         .catch((err) => {
             console.log(err);
-            res.send(500, "Database Error");
+            res.status(500).send("Database Error");
         });
 
 });
