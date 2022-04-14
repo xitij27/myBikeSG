@@ -50,8 +50,8 @@ class AccMgr
         var mailOptions = {
         from: 'scared2compile@outlook.com',
         to: email,
-        subject: 'your otp',
-        text: otp.concat(" Please DO NOT SHARE your OTP with anyone.")
+        subject: 'Your One-Time-Password for login to MyBikeSG ',
+        text: 'Your OTP is '+otp+'. This OTP is valid for 15 minutes. Please do not share with anyone. If you have logged in again, then do not use this OTP.'
         };
         return new Promise(function (resolve, reject){
             transporter.sendMail(mailOptions, (err, info) => {
