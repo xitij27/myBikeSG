@@ -9,9 +9,9 @@ const method = myModule.method;
 const otherMethod = myModule.otherMethod*/
 // Date base Part
 const mongoose = require('mongoose');
-const accountDB2 = require('./models/accountsDB2');
-const bikeracksDB2 = require('./models/bikeracksDB2');
-const repairshopsDB2 = require('./models/repairshopsDB2');
+const accountDB2 = require('./models/AccountsDB2');
+const bikeracksDB2 = require('./models/BikeRacksDB2');
+const repairshopsDB2 = require('./models/RepairShopsDB2');
 
 // Connect to mongoDB (use a promise with a catch block for errors)
 const dbURI = 'mongodb+srv://scared2compile:CZ2006@mybikesg-db.hfkb3.mongodb.net/Accounts?retryWrites=true&w=majority';
