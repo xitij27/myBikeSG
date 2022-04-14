@@ -18,14 +18,21 @@ const loginform = ({ url, showSignUp, showForgetPw, toggleLogin, toggleGuest, se
             alert("Please enter login credentials")
             return;
         }
+        if (!(data.email.indexOf('@') > -1)) {
+            alert("Enter a valid email address")
+            return;
+        }
         axios.post(login_url, data)
             .then(response => {
                 if (response.data) {
                     toggleLogin(); 
                     alert(response.data);
                     setUser(data.email)
-                } else alert("Wrong password")})
-            .catch(err => console.log(err))
+                } else alert("TEST")})
+            .catch(err => {
+                console.log(err)
+                alert("Account does not exist")
+            })
     }
 
     return (
