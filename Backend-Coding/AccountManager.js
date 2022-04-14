@@ -41,18 +41,17 @@ class AccMgr
     {
         var nodemailer = require('nodemailer');
         var transporter = nodemailer.createTransport({
-        service:'gmail',
+        service:'outlook',
         auth: {
-        user: 'scared2compile@gmail.com',
+        user: 'scared2compile@outlook.com',
         pass: 'CZ2006@2022'
         }
         });
-
         var mailOptions = {
-        from: 'scared2compile@gmail.com',
+        from: 'scared2compile@outlook.com',
         to: email,
         subject: 'your otp',
-        text: otp
+        text: otp.concat(" Please DO NOT SHARE your OTP with anyone.")
         };
         return new Promise(function (resolve, reject){
             transporter.sendMail(mailOptions, (err, info) => {
