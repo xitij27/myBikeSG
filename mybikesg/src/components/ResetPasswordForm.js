@@ -36,18 +36,18 @@ const ResetPasswordForm = ({ url, showForgetPw }) => {
         showForgetPw()
     }
     return (
-        <form className="add-form">
+        <form className="add-resetform">
             <div className="header"><h1 className='header'>Reset Password</h1></div>
             <Link to='#' className='goback'>
                 <p onClick={showForgetPw}>Go back</p>
             </Link>
-            <div className="form-control">
+            <div className="resetform-control">
                     <input id="email" type="email" placeholder="Enter Email" required={true}/>
             </div>
-            <div className="form-control">
+            <div className="resetform-control">
                     <input id="password" type="password" name="password" placeholder="Enter New Password" required={true}/>
             </div>  
-            <div className="form-control">
+            <div className="resetform-control">
                     <input id="confirmpassword" type="password" name="confirmpassword" placeholder="Confirm Password" required={true}/>
             </div>  
             <button type="button" className='resetbtn resetbtn-block' onClick={sendOTP}>Email OTP</button>
