@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import {Main} from './components/Main'
 import Login from './components/Login'
 
-const host = "http://localhost:"
-const port = "9000"
-const url = host.concat(port)
+// const host = "http://localhost:"
+// const port = "9000"
+const url = "https://mybikesg-back.herokuapp.com"
 
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
