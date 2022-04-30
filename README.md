@@ -1,5 +1,8 @@
 # myBikeSG
 
+## Deployed Link
+https://mybikesg-86ea4.web.app/  
+
 ## API Calls (How to access backend from frontend)
 ### Login
 POST http://localhost:3000/api/login (For now)  
