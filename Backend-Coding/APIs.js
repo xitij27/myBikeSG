@@ -14,11 +14,9 @@ const bikeracksDB2 = require('./models/BikeRacksDB2');
 const repairshopsDB2 = require('./models/RepairShopsDB2');
 
 // Connect to mongoDB (use a promise with a catch block for errors)
-const dbURI = 'REDACTED_MONGODB_URI';
+const dbURI = '';
 mongoose.connect(dbURI).then((result) => console.log('Connected to db Accounts'))
     .catch((err) => console.log(err));
-/*const dbURI2 = 'REDACTED_MONGODB_URI';
-const conn = mongoose.createConnection(dbURI2);*/
 
 // Loading Express
 const express = require('express');
