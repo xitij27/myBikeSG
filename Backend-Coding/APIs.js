@@ -14,11 +14,9 @@ const bikeracksDB2 = require('./models/BikeRacksDB2');
 const repairshopsDB2 = require('./models/RepairShopsDB2');
 
 // Connect to mongoDB (use a promise with a catch block for errors)
-const dbURI = 'mongodb+srv://scared2compile:CZ2006@mybikesg-db.hfkb3.mongodb.net/Accounts?retryWrites=true&w=majority';
+const dbURI = '';
 mongoose.connect(dbURI).then((result) => console.log('Connected to db Accounts'))
     .catch((err) => console.log(err));
-/*const dbURI2 = 'mongodb+srv://scared2compile:CZ2006@mybikesg-db.hfkb3.mongodb.net/BikeRacks?retryWrites=true&w=majority';
-const conn = mongoose.createConnection(dbURI2);*/
 
 // Loading Express
 const express = require('express');
