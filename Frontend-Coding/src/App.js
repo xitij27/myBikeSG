@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import {Main} from './components/Main'
 import Login from './components/Login'
 
-// const host = "http://localhost:"
-// const port = "9000"
-const url = "https://mybikesg-back.herokuapp.com"
+// Base URL of the backend API (Backend-Coding). The original Heroku
+// deployment, https://mybikesg-back.herokuapp.com, no longer exists.
+const url = process.env.REACT_APP_API_URL || "http://localhost:9000"
 
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);

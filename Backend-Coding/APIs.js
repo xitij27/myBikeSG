@@ -14,7 +14,12 @@ const bikeracksDB2 = require('./models/BikeRacksDB2');
 const repairshopsDB2 = require('./models/RepairShopsDB2');
 
 // Connect to mongoDB (use a promise with a catch block for errors)
-const dbURI = '';
+// The connection string comes from the environment; see .env.example.
+const dbURI = process.env.MONGODB_URI;
+if (!dbURI) {
+    console.error('MONGODB_URI is not set. Copy .env.example to .env and fill it in.');
+    process.exit(1);
+}
 mongoose.connect(dbURI).then((result) => console.log('Connected to db Accounts'))
     .catch((err) => console.log(err));
 

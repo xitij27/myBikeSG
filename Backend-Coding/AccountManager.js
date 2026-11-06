@@ -40,15 +40,16 @@ class AccMgr
     static async sendEmail(email,otp)
     {
         var nodemailer = require('nodemailer');
+        // Mail account credentials come from the environment; see .env.example.
         var transporter = nodemailer.createTransport({
-        service:'outlook',
+        service: process.env.EMAIL_SERVICE || 'outlook',
         auth: {
-        user: 'scared2compile@outlook.com',
-        pass: 'REDACTED_EMAIL_PASSWORD'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
         }
         });
         var mailOptions = {
-        from: 'scared2compile@outlook.com',
+        from: process.env.EMAIL_USER,
         to: email,
         subject: 'Your One-Time-Password for login to MyBikeSG ',
         text: 'Your OTP is '+otp+'. This OTP is valid for 15 minutes. Please do not share with anyone. If you have logged in again, then do not use this OTP.'
